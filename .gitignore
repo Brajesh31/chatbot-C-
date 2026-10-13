@@ -1,0 +1,19 @@
+# Local compiler outputs; keep the checked-in chatbot.exe unchanged.
+/chatbot/chatbot-build
+/chatbot/chatbot-build.exe
+*.o
+*.obj
+*.pdb
+*.ilk
+
+# Local environment files (the current program has no environment settings).
+.env
+.env.*
+!.env.example
+
+# Common editor and operating-system files.
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/settings.json
+.idea/

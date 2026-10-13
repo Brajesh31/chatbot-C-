@@ -1,0 +1,13 @@
+# Normalize text and preserve compiled executables as binary files.
+* text=auto
+*.c text eol=lf
+*.h text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.cff text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.exe binary
+*.o binary
+*.obj binary
+*.pdb binary
