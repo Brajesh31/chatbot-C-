@@ -213,10 +213,10 @@ No numeric coverage percentage, performance benchmark, or formal security certif
 
 ## 🗂️ Project structure
 
-The repository contains **286 tracked files** across source code, documentation, tests, automation and governance. The complete file-level tree is available below and in [docs/project-structure.md](docs/project-structure.md).
+The repository contains **289 tracked files** across source code, documentation, tests, automation and governance. The complete file-level tree is available below and in [docs/project-structure.md](docs/project-structure.md).
 
 <details>
-<summary>Expand complete tracked file and directory inventory (286 files)</summary>
+<summary>Expand complete tracked file and directory inventory (289 files)</summary>
 
 ~~~text
 chatbot-C-/
@@ -468,9 +468,12 @@ docs/
     qa-test-case-template.md
     release-checklist-template.md
     release-checklist.md
+    release-notes-template.md
+    reproduction-record-template.md
     risk-assessment-template.md
     rollback-checklist.md
     security-audit-template.md
+    security-exception-template.md
     security-review-template.md
     test-plan-template.md
     test-report-template.md
@@ -523,6 +526,113 @@ tests/
 
 </details>
 
+## 🧠 Runtime contract and input boundaries
+
+The runtime uses a 256-byte buffer, allowing a maximum accepted message of 255 bytes plus the terminating NUL. The limit is measured in bytes, not visible characters. UTF-8 characters may occupy multiple bytes. Input is normalized byte-by-byte with the C character API; this is not Unicode case folding or natural-language understanding.
+
+| Input | Result | Session behavior |
+|---|---|---|
+| Line shorter than 255 bytes | Accepted | Processed once |
+| Exactly 255 bytes followed by newline | Accepted | Processed once |
+| Exactly 255 bytes followed by clean EOF | Accepted as final unterminated line | Processed, then next read exits |
+| More than 255 bytes | Rejected after draining the line remainder | One warning, then next prompt |
+| EOF before a new line | Input-ended status | Prints input-closed message and exits |
+| Input stream error | Input-ended status | Exits without classifying stale buffer data |
+
+When the buffer fills without capturing a newline, the reader probes one more byte. A newline or clean EOF proves the line is exactly within the limit. Any additional data makes the whole logical line overlong, so the remainder is drained before the next prompt. This prevents the tail of one long message from being interpreted as another message.
+
+### Deterministic rule precedence
+
+~~~mermaid
+flowchart TD
+ A[Accepted input] --> B[Lowercase bytes]
+ B --> C{Contains hello?}
+ C -->|Yes| G[Greeting]
+ C -->|No| D{Contains how are you?}
+ D -->|Yes| H[Status]
+ D -->|No| E{Whole string equals bye?}
+ E -->|Yes| I[Goodbye and exit]
+ E -->|No| F[Fallback and continue]
+~~~
+
+The order is observable. `hello and bye` triggers the greeting rule and continues. `goodbye` is not an exit command because only the entire normalized string `bye` exits. Empty input receives the fallback response.
+
+### Internal function responsibilities
+
+| Function | Contract |
+|---|---|
+| `read_input_line` | Returns 1 for accepted line, 0 for EOF/read error/invalid buffer, -1 for overlong input |
+| `normalize_input` | Lowercases accepted bytes in place using an unsigned-char conversion |
+| `is_exit_command` | Matches the whole string against `bye` |
+| `classify_input` | Applies greeting, status, exit and fallback precedence |
+| `response_text` | Maps the finite `ResponseKind` enum to a static string |
+| `main` | Owns prompt, flush, read, classify, response and process termination |
+
+These helper functions are file-local implementation details, not a published C library API.
+
+## 🔁 Runtime sequence
+
+~~~mermaid
+sequenceDiagram
+ actor User
+ participant Main as main()
+ participant Reader as read_input_line()
+ participant Rules as normalize/classify
+ participant Output as stdout
+ Main->>Output: Print welcome
+ loop Until exact bye, EOF or read error
+  Main->>Output: Print prompt and flush
+  User->>Reader: Enter one logical line
+  alt Accepted line
+   Reader-->>Main: NUL-terminated text
+   Main->>Rules: Normalize and classify
+   Rules-->>Main: ResponseKind
+   Main->>Output: Print fixed response
+  else Overlong line
+   Reader-->>Main: Drain remainder and reject
+   Main->>Output: Print 255-byte warning
+  else EOF or read error
+   Reader-->>Main: End status
+   Main->>Output: Print input-closed message
+  end
+ end
+~~~
+
+## 🧪 Test matrix
+
+| Scenario | Unit tests | Linux process tests | Windows PowerShell tests |
+|---|---:|---:|---:|
+| Greeting, status, fallback | Yes | Yes | Yes |
+| Case normalization and rule precedence | Yes | Yes | Yes |
+| Exact `bye` versus `goodbye` | Yes | Yes | Yes |
+| Empty input and EOF | Unit where applicable | Yes | Yes |
+| 254/255/256-byte boundaries | Helper checks | Yes | Yes |
+| Overlong-line drain and next valid turn | Helper checks | Yes | Yes |
+
+The matrix describes checked-in test intent, not exhaustive testing of every byte sequence, locale, compiler or terminal. Read [testing](docs/testing.md), [test strategy](docs/test-strategy.md) and [testing matrix](docs/testing-matrix.md).
+
+## 🧰 Build and quality commands
+
+| Command | Purpose |
+|---|---|
+| `make` | Build `build/chatbot` |
+| `make run` | Build and launch the program |
+| `make test` | Run C unit tests and POSIX process tests |
+| `make docs-check` | Validate local documentation links and SVG assets |
+| `make markdown-check` | Check tracked Markdown code fences |
+| `make structure-check` | Verify the tracked-file inventory |
+| `make security-check` | Run local secret-pattern hygiene checks |
+| `make check` | Run the full local quality gate |
+| `make clean` | Remove generated build output |
+
+Linux CI runs `make check`. Windows CI compiles with MinGW, runs C unit tests and executes the PowerShell interactive boundary suite. macOS and Clang are not currently in the CI matrix.
+
+## 🖼️ Terminal visual reference
+
+<img src="docs/assets/terminal-session.svg" alt="Illustrative terminal session diagram showing greeting, status, fallback and exact bye responses; it is not a captured application screenshot." width="100%">
+
+The repository does not fabricate browser, dashboard or mobile screenshots. The current application has no graphical interface. See the [asset and screenshot policy](docs/assets/README.md).
+
 ## 🔐 Security, privacy and accessibility
 
 The program uses bounded input and does not persist or transmit chat messages. It has no account, network, database, or secret-management subsystem. The plain-text interface avoids color-only meaning. SVG documentation assets include title and description metadata.
@@ -549,9 +659,9 @@ Start with the [documentation index](docs/README.md). Important guides:
 - [Security architecture](docs/security-architecture.md)
 - [Privacy and data handling](docs/data-privacy.md)
 - [CI/CD and releases](docs/ci-cd.md)
-- [Templates index](docs/templates/README.md)
+- [Templates index](docs/templates/README.md), including [reproduction records](docs/templates/reproduction-record-template.md), [release notes](docs/templates/release-notes-template.md), and [security exceptions](docs/templates/security-exception-template.md)
 - [Visual assets index](docs/assets/README.md)
-- [Master checklist applicability register](docs/repository-file-applicability.md)
+- [Master checklist applicability register](docs/repository-file-applicability.md), [complete project structure](docs/project-structure.md), [architecture reference](docs/architecture.md), and [function/API contracts](docs/api-reference.md)
 - [Diagram catalogue](docs/diagrams.md)
 - [CLI design system](docs/design-system.md), [tokens](docs/design-tokens.md), [component boundaries](docs/component-library.md)
 - [Responsive terminal](docs/responsive-design.md), [navigation](docs/navigation-structure.md), [terminal output surfaces](docs/page-documentation.md)

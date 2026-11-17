@@ -1,6 +1,6 @@
 # 📚 Documentation Index
 
-This directory documents the current local C terminal chatbot. It distinguishes implemented behavior from reusable templates and future proposals.
+This directory documents the current local C terminal chatbot. It distinguishes implemented behavior from reusable templates and future proposals. Use the index below to move from product requirements to source behavior, verification evidence, security boundaries and release operations.
 
 ## Product and requirements
 - [Product overview](product-overview.md), [background](project-background.md), [objectives](project-objectives.md)
@@ -22,7 +22,7 @@ This directory documents the current local C terminal chatbot. It distinguishes 
 - [Technology stack](technology-stack.md), [configuration](configuration.md), [environment variables](environment-variables.md), [error handling](error-handling.md)
 - [Code standards](code-standards.md), [coding guidelines](coding-guidelines.md), [CLI UX](cli-ux-guidelines.md), [UI/UX applicability](ui-ux-guidelines.md), [branding](branding-guidelines.md)
 - [Performance](performance.md), [performance testing](performance-testing.md), [scalability](scalability.md), [logging](logging.md), [compatibility](compatibility.md)
-- [Compiler support](compiler-support.md), [build matrix](build-matrix.md), [testing matrix](testing-matrix.md)
+- [Compiler support](compiler-support.md), [build matrix](build-matrix.md), [testing matrix](testing-matrix.md), [reproduction record](templates/reproduction-record-template.md)
 
 ## Setup and development
 - [Getting started](getting-started.md), [installation](installation.md), [environment setup](environment-setup.md), [local development](local-development.md)
@@ -63,7 +63,7 @@ This directory documents the current local C terminal chatbot. It distinguishes 
 
 ## Engineering resources
 - [Visual assets](assets/README.md), [screenshot policy](assets/screenshots/README.md), [architecture decisions](decisions/README.md)
-- [Reusable templates](templates/README.md), [validation scripts](../scripts/README.md), [tests](../tests/README.md)
+- [Reusable templates](templates/README.md), [release notes template](templates/release-notes-template.md), [security exception template](templates/security-exception-template.md), [validation scripts](../scripts/README.md), [tests](../tests/README.md)
 - [GitHub configuration guide](../.github/README.md)
 
 ## Applicability

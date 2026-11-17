@@ -1,6 +1,6 @@
 # 🗂️ Complete Project Structure
 
-This inventory reflects the tracked Git tree on the default branch. Temporary build output under `build/` is generated locally and is not tracked.
+This inventory reflects the tracked Git tree on the default branch (**289 tracked files**). Temporary build output under `build/` is generated locally and is not tracked. The inventory is regenerated from Git and must be updated in the same change that adds, removes or renames tracked files.
 
 ## Complete tracked tree
 
@@ -254,9 +254,12 @@ docs/
     qa-test-case-template.md
     release-checklist-template.md
     release-checklist.md
+    release-notes-template.md
+    reproduction-record-template.md
     risk-assessment-template.md
     rollback-checklist.md
     security-audit-template.md
+    security-exception-template.md
     security-review-template.md
     test-plan-template.md
     test-report-template.md
@@ -315,9 +318,21 @@ tests/
 | `docs/` | Product, architecture, security, accessibility, testing, operations and maintenance guides |
 | `docs/assets/` | SVG identity, architecture diagrams, sequence visuals and workflow illustrations |
 | `docs/decisions/` | Accepted Architecture Decision Records |
-| `docs/templates/` | Reusable engineering, QA, security, release and governance templates |
+| `docs/templates/` | 32 reusable engineering, QA, security, release, reproduction and governance templates |
 | `scripts/` | Setup, documentation, Markdown, tree, security-hygiene and release scripts |
 | `tests/` | C unit assertions and POSIX shell and Windows PowerShell interactive tests |
+
+## Source responsibilities
+
+| Source element | Responsibility |
+|---|---|
+| `ResponseKind` | Finite set of four response categories |
+| `read_input_line` | Bounded logical-line reader, exact-fit probe and overlong-line drain |
+| `normalize_input` | In-place lowercase byte conversion |
+| `is_exit_command` | Exact normalized exit predicate |
+| `classify_input` | Ordered greeting/status/exit/fallback selection |
+| `response_text` | Constant response mapping |
+| `main` | Prompt, read, classify, print and exit loop |
 
 ## Runtime entry points
 - `chatbot/chatbot.c` is the only application source file and contains `main` plus input, normalization, classification and response helpers.
@@ -334,6 +349,8 @@ tests/
 | `LICENSE` | MIT license |
 | `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md` | Contributor workflow and community behavior |
 | `SECURITY.md`, `SUPPORT.md` | Private vulnerability route and support guidance |
+| `.gitleaks.toml`, `.editorconfig`, `.gitattributes` | Repository hygiene, editor and line-ending defaults |
+| `.github/` | Issue forms, PR/discussion templates, Dependabot and seven workflows |
 | `CHANGELOG.md`, `ROADMAP.md` | Implemented changes and proposed future work |
 | `CITATION.cff`, `AUTHORS.md`, `CODEOWNERS` | Citation and ownership metadata |
 | `.clang-format` | Optional C formatting defaults |

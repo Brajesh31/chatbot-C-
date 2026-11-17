@@ -13,14 +13,14 @@ All notable repository changes are recorded here. The project has not published 
 - GitHub Actions workflows for Linux/Windows build testing, CodeQL, GCC static analysis, documentation validation, and tagged source artifacts.
 - Documentation validation scripts and repository structure checks.
 - Extensive project, architecture, requirements, setup, testing, security, accessibility, privacy, maintenance, and release documentation.
-- Reusable templates for architecture decisions, features, testing, security, accessibility, releases, incidents, risk, and maintenance.
+- Reusable templates for architecture decisions, features, testing, security, accessibility, releases, incidents, risk, maintenance, reproducible bug records, release notes, and time-bound security exceptions.
 - Original SVG identity and technical diagrams with accessible title and description metadata.
 - Structured GitHub issue forms and contribution guidance.
 
 ### Changed
-- Main README expanded with project context, rule behavior, visual assets, build instructions, examples, testing, scope, and documentation index.
+- Main README expanded with a byte-level input contract, function responsibilities, rule-precedence flowchart, runtime sequence diagram, platform test matrix, Make target reference, terminal visual illustration, and regenerated complete tracked-file inventory.
 - Architecture and technical guides now distinguish implemented behavior from non-applicable or proposed functionality.
-- Repository project-tree documentation expanded to include the complete tracked inventory.
+- Repository project-tree documentation expanded to include the complete tracked inventory, key file responsibilities, and runtime/test entry points.
 - Main CI quality gate includes build, tests, and offline documentation validation.
 
 ### Fixed
