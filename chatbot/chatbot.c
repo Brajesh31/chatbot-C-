@@ -1,4 +1,5 @@
 #include <ctype.h>
+#include <limits.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -48,9 +49,17 @@ static const char *response_text(ResponseKind kind) {
     }
 }
 
-/* Returns 1 for a complete line, 0 for EOF/error, and -1 for an overlong line. */
+/*
+ * Returns 1 for an accepted line, 0 for EOF/read error, and -1 for an
+ * overlong logical line. A line of capacity - 1 bytes is accepted even
+ * when its newline or EOF marker is the next character in the stream.
+ */
 static int read_input_line(char *buffer, size_t capacity) {
-    if (fgets(buffer, (int)capacity, stdin) == NULL) {
+    if (buffer == NULL || capacity < 2 || capacity > (size_t)INT_MAX) {
+        return 0;
+    }
+
+    if (fgets(buffer, (int)capacity, stdin) == NULL || ferror(stdin)) {
         return 0;
     }
 
@@ -60,15 +69,32 @@ static int read_input_line(char *buffer, size_t capacity) {
         return 1;
     }
 
-    if (!feof(stdin)) {
-        int character;
-        while ((character = getchar()) != '\n' && character != EOF) {
-            /* Discard the rest of this logical input line. */
-        }
-        return -1;
+    if (feof(stdin)) {
+        return 1;
     }
 
-    return 1;
+    /*
+     * fgets may have filled capacity - 1 bytes without reading the line
+     * terminator. Inspect one more character to distinguish an exact-fit
+     * line from a genuinely overlong line.
+     */
+    int character = getchar();
+    if (character == '\n') {
+        return 1;
+    }
+    if (character == EOF) {
+        return ferror(stdin) ? 0 : 1;
+    }
+
+    /* Discard the rest of an overlong logical line before the next prompt. */
+    while (character != '\n' && character != EOF) {
+        character = getchar();
+    }
+
+    if (ferror(stdin)) {
+        return 0;
+    }
+    return -1;
 }
 
 int main(void) {
@@ -86,7 +112,7 @@ int main(void) {
             break;
         }
         if (status < 0) {
-            printf("Chatbot: Please keep your message under %d characters.\n",
+            printf("Chatbot: Please keep your message to %d bytes or fewer.\n",
                    INPUT_CAPACITY - 1);
             continue;
         }

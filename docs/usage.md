@@ -26,7 +26,7 @@ On Windows, compile with MinGW-w64 and run the generated .exe file. See [install
 
 ## Input length
 
-At most 255 bytes are accepted in one line. An overlong line is drained through its newline and rejected as one message. The remaining tail is not treated as a separate conversation turn.
+At most 255 bytes are accepted in one line. A line of exactly 255 bytes is accepted whether it is followed by a newline or by EOF. A line of 256 bytes or more is drained through its newline or EOF and rejected as one message. The remaining tail is not treated as a separate conversation turn. This is a byte limit, not a Unicode character limit.
 
 ## End the session
 
