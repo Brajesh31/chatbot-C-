@@ -100,6 +100,7 @@ docs/
   integration-testing.md
   keyboard-navigation.md
   known-issues.md
+  limitations.md
   local-development.md
   logging.md
   maintainer-guide.md
@@ -203,7 +204,7 @@ tests/
 | .github/ISSUE_TEMPLATE/ | Structured bug, feature, documentation, accessibility, and performance reports. Security concerns are redirected to private reporting. |
 | .github/workflows/ | Build/test CI, CodeQL, GCC static analysis, documentation validation, and tagged source artifact workflow. |
 | chatbot/ | Main C source, existing editor settings, and the preserved historical Windows executable. |
-| docs/assets/ | Original SVG identity assets, architecture diagrams, and visual explanation files. |
+| docs/assets/ | Original SVG identity assets and architecture/data-flow/process diagrams. |
 | docs/decisions/ | Architecture decision records documenting accepted implementation choices. |
 | docs/templates/ | Reusable product, architecture, testing, security, accessibility, release, and maintenance templates. |
 | scripts/ | Offline repository documentation and SVG validation utility. |
@@ -229,13 +230,17 @@ tests/
 ## File organization conventions
 
 - Keep C implementation in chatbot/ until a real second module warrants splitting it.
-- Keep tests in tests/ and ensure tests cover normal and boundary inputs.
+- Keep tests in tests/ and cover normal and boundary inputs.
 - Use lowercase kebab-case for documentation names.
 - Store architecture records in docs/decisions/ and reusable templates in docs/templates/.
-- Keep original assets and binaries unless an explicit reviewed change replaces them.
+- Preserve original assets and binaries unless an explicit reviewed change replaces them.
 - Place generated build products under build/ or another ignored local output directory.
 - Update this inventory whenever tracked paths change.
 
 ## Applicability boundaries
 
-This application has no frontend, backend service, HTTP API, authentication layer, database, mobile screens, or external integration. Therefore, there are no active route/component folders, ER diagrams, database migrations, authentication sequence diagrams, API endpoints, or mobile screenshots. The corresponding reusable API and database templates are present for future use, but do not describe current functionality.
+This application has no frontend, backend service, HTTP API, authentication layer, database, mobile screens, or external integration. Therefore, there are no active route/component folders, ER diagrams, database migrations, authentication sequence diagrams, API endpoints, or mobile screenshots. Corresponding reusable API and database templates are present for future use, but do not describe current functionality.
+
+## Inventory counts
+
+The tree above contains 176 tracked files at the time this document was generated. Directory entries are shown for clarity and are not included in that file count.

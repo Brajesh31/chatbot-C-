@@ -58,6 +58,16 @@ A small classroom example can still hide unsafe input handling and unclear exit 
 ## 🏗️ Architecture and workflows
 <img src="docs/assets/architecture-overview.svg" alt="Architecture flow from terminal input through bounded reader, normalization, rule classifier, response mapper, and terminal output" width="100%">
 
+<p align="center">
+  <img src="docs/assets/data-flow.svg" alt="Data flow from terminal input through bounded reading and classification to a static response" width="100%">
+</p>
+
+<p align="center">
+  <img src="docs/assets/cli-sequence.svg" alt="Illustrative terminal transcript showing a hello greeting followed by the bye exit command" width="100%">
+</p>
+
+<sub>The terminal panel is an illustrative transcript, not a screenshot of a live desktop interface.</sub>
+
 ### Application flow
 ~~~mermaid
 flowchart TD
