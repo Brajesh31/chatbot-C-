@@ -54,7 +54,7 @@ The release workflow builds a Linux artifact from an existing tag. It does not p
 System, application flow, user journey, DFD levels 0/1/2, dedicated runtime sequence and state diagrams, testing, CI, security, error-handling and distribution diagrams are documented. ER diagrams are not applicable because there are no tables or persisted application data. UML class diagrams are not applicable to procedural C. Authentication and frontend component diagrams are not applicable. The screenshot directory explains why no fake GUI screenshots are included.
 
 ## Templates
-The templates directory contains ADR, architecture, API, database, feature, bug, QA, test, threat, security, accessibility, incident, release, deployment, rollback, migration, risk, change-request, code-review, status, meeting-notes and maintenance templates, plus benchmark, compatibility, proposal, review and feedback templates. API/database templates are reusable proposal tools only.
+The templates directory contains 32 reusable templates, including ADR, architecture, API, database, feature, bug, QA, test, threat, security, accessibility, incident, release, release notes, deployment, rollback, migration, risk, change-request, code-review, status, meeting-notes, maintenance, reproduction records and security exceptions. API/database templates are reusable proposal tools only. Every template must be completed with evidence, ownership and review details before it is treated as a project record.
 
 ## GitHub automation
 | Requirement | Treatment |
@@ -64,13 +64,17 @@ The templates directory contains ADR, architecture, API, database, feature, bug,
 | Discussion templates | Present; Discussions setting remains disabled |
 | Dependabot | Monthly GitHub Actions updates |
 | Build/test | Consolidated in ci.yml, Linux `make check` plus Windows MinGW compile, C unit and PowerShell process tests |
-| Lint/docs/tree | Focused lint and docs workflows |
+| Lint/docs/tree | Focused lint and docs workflows; local Markdown-fence, link, SVG and tree validators |
 | CodeQL and dependency review | Dedicated workflows |
 | Secret scanning | Gitleaks full-history scan plus local tracked-text heuristic |
 | Release | Manual artifact from existing tag |
 | Separate build/test/quality workflows | Consolidated to avoid duplicate checks |
 | stale.yml | Not enabled to avoid auto-closing valid reports |
 | .github/SECURITY.md | Not duplicated; root SECURITY.md is authoritative |
+
+## Documentation and validation standard
+
+The root README contains the user-facing setup and behavior contract, the complete generated tracked-file inventory, architecture and test references. The detailed documentation index groups the supporting guides. The tracked tree must be regenerated whenever files are added, renamed or removed. The custom Markdown validator checks fence balance; the documentation validator checks local links and SVG XML/metadata. These are offline structural checks, not a full CommonMark or external-link certification.
 
 ## Additional project-specific guides
 

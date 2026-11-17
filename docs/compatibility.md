@@ -7,7 +7,7 @@ The source targets the C11 language standard and relies on the standard C librar
 | Environment | Build command | Automated coverage | Status |
 |---|---|---|---|
 | Linux hosted runner | Makefile with C11 warnings-as-errors | Unit tests and POSIX interactive tests | Verified by current CI run |
-| Windows hosted runner | MinGW GCC C11 compile | Application compile, C unit tests and PowerShell interactive boundary tests | Configured for CI verification |
+| Windows hosted runner | MinGW GCC C11 compile | Application compile, C unit tests and PowerShell interactive boundary tests | Configured and exercised by the default-branch CI workflow |
 | macOS | Direct C11 compiler invocation | Not currently in CI | Expected to be portable, not yet verified here |
 | Other Unix-like systems | Compatible C11 compiler | Not currently in CI | Not verified |
 
@@ -23,7 +23,7 @@ The application uses stdin and stdout. It does not require a graphical desktop, 
 
 ## Known platform gap
 
-The Linux integration suite uses POSIX utilities. Windows uses a separate PowerShell process-level test against the same executable behavior, including 254/255/256-byte boundaries. macOS and Clang toolchains are not currently in CI. A passing Linux and Windows run is not proof that every terminal, compiler, architecture, or operating-system release is supported.
+The Linux integration suite uses POSIX utilities. Windows uses a separate PowerShell process-level test against the same executable behavior, including 254/255/256-byte boundaries. The Windows CI job does not run the POSIX shell suite. macOS and Clang toolchains are not currently in CI. A passing Linux and Windows run is not proof that every terminal, compiler, architecture, or operating-system release is supported.
 
 ## Adding a platform
 

@@ -1,38 +1,43 @@
-# 🚦 Quality Gates
+# 🚦 Quality Gates and Merge Criteria
 
-## Required local gate
-
-Run:
+## ✅ Required local command
 
 ~~~sh
 make check
 ~~~
 
-The combined target executes the C unit and interactive tests, local documentation and SVG validation, Markdown fence validation, project-tree validation, and secret-pattern hygiene scan.
+This target runs the application unit and POSIX interactive tests, documentation and SVG validation, tracked Markdown fence validation, project-tree consistency and local secret-pattern hygiene checks.
 
 ## Gate matrix
 
-| Gate | Required result | Command/workflow | Failure response |
+| Gate | Command / workflow | Expected evidence | Typical failure response |
 |---|---|---|---|
-| Strict C build | C11 build succeeds with warnings-as-errors | make test, ci.yml | Fix source/compiler warning |
-| Unit tests | All assertions pass | make test | Add regression coverage |
-| Interactive tests | Conversation, EOF and long input pass | make test on Linux | Reproduce with stdin/stdout |
-| Docs links and SVG | All local references and SVG assets resolve | make docs-check | Fix broken references/XML |
-| Markdown fences | All tracked Markdown code fences balance | make markdown-check | Close or correct fence |
-| Project structure | Inventory matches tracked Git tree | make structure-check | Regenerate and commit file tree |
-| Repository hygiene | No selected secret/conflict patterns found | make security-check | Inspect safely and remediate |
-| CodeQL | Analysis workflow completes successfully | codeql.yml | Inspect extraction and findings |
-| GCC analyzer | Analyzer completes without blocking findings | security-scan.yml | Review source path and warning |
-| Windows build | MinGW compile and unit tests pass | ci.yml Windows job | Fix platform/compiler issue |
+| C build | `make`, `ci.yml` | C11 compilation with warnings-as-errors | Correct source/compiler warning |
+| Unit tests | `make test` | All deterministic assertions pass | Add or fix regression assertion |
+| Linux process tests | `make test` | Input/output, EOF, exit and boundary scenarios pass | Reproduce through stdin/stdout |
+| Windows process tests | `ci.yml` Windows job | MinGW binary, C tests and PowerShell integration pass | Reproduce with the same executable and shell |
+| Local links and SVGs | `make docs-check` | Every local reference resolves; top-level SVG XML contains title/desc | Correct path or asset |
+| Markdown fences | `make markdown-check` | Tracked Markdown fences are balanced | Fix malformed fence |
+| Project inventory | `make structure-check` | Docs reflect tracked Git files | Regenerate README/docs tree |
+| Repository hygiene | `make security-check` | Selected secret patterns do not appear in tracked text | Review and remediate without exposing secrets |
+| CodeQL | `codeql.yml` | C/C++ analysis completes and findings are triaged | Review findings and data flow |
+| GCC analyzer | `security-scan.yml` | Configured analyzer reports no unresolved blocking issue | Review compiler diagnostics |
 
-## Review requirements
+## Pull-request acceptance
 
-- Do not merge a behavior change solely because compilation passes.
-- Verify rule precedence and input boundary effects.
-- Ensure docs, examples and diagrams match the current source.
-- Record test environments and any checks not executed.
-- Avoid claims of full portability, zero vulnerabilities, numeric coverage, WCAG compliance or formal certification without evidence.
+1. The change has a clear purpose and does not introduce unrelated dependencies.
+2. Behavior changes have tests that fail before the fix and pass after it.
+3. Input-reader changes have exact 254/255/256-byte and EOF coverage on relevant platforms.
+4. Documentation, README examples, diagrams and project inventory match the source.
+5. New assets are valid and include meaningful accessible descriptions.
+6. Security, privacy, portability and maintenance impacts are explained.
+7. All applicable checks have run. Skipped checks are recorded with a reason.
+8. The review does not claim features, coverage, certifications or platform support without evidence.
 
-## Branch protection
+## Release criteria
 
-Repository branch protection and required status-check settings are managed in GitHub repository settings. The workflow definitions do not prove that branch protection has been enabled. Review the latest run and repository rules before relying on required checks.
+A release candidate should identify an exact source commit/tag, pass the required build and test checks, include updated release notes, disclose known limitations, and have a maintainer review. The existing release workflow creates a Linux build artifact from an existing tag. It does not currently sign artifacts, publish a formal GitHub Release, attest provenance or deploy a service.
+
+## Repository settings boundary
+
+Workflow YAML does not prove that branch protection, mandatory approvals, signed commits or required status checks are enabled in GitHub settings. Verify repository rules directly before describing them as enforced.
