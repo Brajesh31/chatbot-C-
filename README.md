@@ -222,7 +222,6 @@ chatbot-C-/
 .env.example
 .gitattributes
 .github/
-  dependabot.yml
   DISCUSSION_TEMPLATE/
     announcements.yml
     ideas.yml
@@ -237,6 +236,7 @@ chatbot-C-/
     security_report.yml
   PULL_REQUEST_TEMPLATE.md
   README.md
+  dependabot.yml
   workflows/
     ci.yml
     codeql.yml
@@ -249,17 +249,26 @@ chatbot-C-/
 ACKNOWLEDGEMENTS.md
 AUTHORS.md
 CHANGELOG.md
+CITATION.cff
+CODEOWNERS
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+DISCLAIMER.md
+GOVERNANCE.md
+LICENSE
+MAINTAINERS.md
+Makefile
+README.md
+ROADMAP.md
+SECURITY.md
+SUPPORT.md
 chatbot/
   .vscode/
     settings.json
   chatbot.c
   chatbot.exe
-CITATION.cff
-CODE_OF_CONDUCT.md
-CODEOWNERS
-CONTRIBUTING.md
-DISCLAIMER.md
 docs/
+  README.md
   access-control.md
   accessibility-audit.md
   accessibility-guidelines.md
@@ -276,6 +285,7 @@ docs/
   architecture-decisions.md
   architecture.md
   assets/
+    README.md
     application-state.svg
     architecture-overview.svg
     chatbot-flow.svg
@@ -288,7 +298,6 @@ docs/
     error-handling.svg
     logo.svg
     project-banner.svg
-    README.md
     response-priority.svg
     screenshots/
       README.md
@@ -383,7 +392,6 @@ docs/
   project-structure.md
   qa.md
   quality-gates.md
-  README.md
   references.md
   release-management.md
   responsible-use.md
@@ -406,6 +414,7 @@ docs/
   technical-overview.md
   technology-stack.md
   templates/
+    README.md
     accessibility-audit-template.md
     adr-template.md
     api-documentation-template.md
@@ -425,7 +434,6 @@ docs/
     migration-template.md
     project-status-template.md
     qa-test-case-template.md
-    README.md
     release-checklist-template.md
     release-checklist.md
     risk-assessment-template.md
@@ -457,24 +465,16 @@ docs/
   wcag-compliance.md
   webhooks.md
   workflow.md
-GOVERNANCE.md
-LICENSE
-MAINTAINERS.md
-Makefile
-README.md
-ROADMAP.md
 scripts/
-  check_project_structure.py
   README.md
+  check_project_structure.py
   release-check.sh
-  security_check.py
   security-check.sh
+  security_check.py
   setup.ps1
   setup.sh
   validate_docs.py
   validate_markdown.py
-SECURITY.md
-SUPPORT.md
 tests/
   README.md
   test_chatbot.c
