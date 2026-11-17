@@ -141,3 +141,20 @@ stateDiagram-v2
 | Backup/restore architecture | No application data store to back up |
 
 A diagram must be updated when its underlying source, workflow or test contract changes. Do not introduce a diagram as evidence of a future capability that has not been implemented.
+
+
+## UML-aligned views and model boundaries
+
+The repository uses diagram forms that fit a procedural, single-process C application:
+
+| View | Source | What it explains |
+|---|---|---|
+| Use-case view | [System design](system-design.md) | Terminal user, build, run, message, response and exit interactions |
+| Activity / control flow | [Bounded-input activity](#bounded-input-activity), [workflow SVG](assets/workflow-diagram.svg) | Validation, branching, retry and termination |
+| Sequence view | [Sequence diagrams](sequence-diagrams.md), [CLI sequence SVG](assets/cli-sequence.svg) | Calls between `main` and the C helper functions |
+| State view | [State diagrams](state-diagrams.md), [application-state SVG](assets/application-state.svg) | Startup, prompt, accepted/rejected input, response and exit |
+| Component / process view | [Architecture overview](assets/architecture-overview.svg) | Responsibilities contained in one local process |
+| Data-flow view | [DFD level 0](assets/data-flow-level0.svg), [DFD level 2](assets/data-flow-level2.svg) | Data entering, being normalized/classified and leaving the process |
+| Delivery view | [Deployment flow](assets/deployment-flow.svg), [CI pipeline](assets/ci-pipeline.svg) | Local source build and repository verification |
+
+A UML class diagram is deliberately omitted: the source has no classes, objects, inheritance, or object lifecycle. An ER diagram is also omitted because the application has no database or persisted domain records. These are intentional modeling decisions, not unfinished diagrams.
