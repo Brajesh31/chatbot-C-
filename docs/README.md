@@ -9,6 +9,7 @@ This directory documents the current local C terminal chatbot. It distinguishes 
 - [Personas](user-personas.md), [user journeys](user-journeys.md), [use cases](use-cases.md)
 - [Scope](feature-scope.md), [scope and limitations](scope-and-limitations.md), [limitations](limitations.md), [known issues](known-issues.md)
 - [Usage](usage.md), [application workflow](workflow.md), [glossary](glossary.md), [FAQ](faq.md)
+- [Master checklist applicability register](repository-file-applicability.md)
 
 ## Architecture and source
 - [Architecture](architecture.md), [system design](system-design.md), [technical overview](technical-overview.md)

@@ -16,13 +16,28 @@ The only product interface is a line-oriented terminal conversation. There is no
 8. Explain EOF and the maximum input length.
 9. Keep sample transcripts synchronized with the source.
 
+## Master checklist design-document applicability
+
+| Requested UI/UX document | Current treatment |
+|---|---|
+| Design system | Not applicable: there are no reusable graphical product components. |
+| Design tokens | Not applicable: the terminal app has no configurable product theme or token set. SVG colors belong to documentation assets only. |
+| Component library | Not applicable: there are no graphical controls, component framework or frontend package. |
+| Responsive design | Not applicable: the product has no viewport or responsive layout. |
+| Navigation structure | Not applicable: the app has no pages, routes, menus or navigation hierarchy. |
+| Page documentation | Not applicable: there are no application pages. |
+| Typography | The executable emits ordinary terminal text; font selection belongs to the terminal environment. |
+| Color system | The application does not emit color. SVG assets use local styling and are documented separately. |
+| Animation guidelines | No app animation or terminal cursor animation is implemented. |
+| Branding guidelines | Applicable to repository assets and documented in branding-guidelines.md. |
+
 ## Current interaction limitations
 
 There is no command parser, built-in history, line editor, menu system, language selector, speech interface, theme switcher, or user preference store. Terminal editing is provided by the user's terminal environment.
 
-## Frontend documentation applicability
+## Frontend documentation boundary
 
-A web or mobile design system, design tokens, component library, responsive design rules, page documentation, and animation guidelines are not active artifacts for this codebase. They should be added only if an actual graphical client is introduced. Do not create screenshots of screens that do not exist.
+The missing graphical UI documents are intentionally not created as empty or generic templates. They should be introduced if a genuine browser, desktop or mobile client is approved. The requirements should then include components, page states, responsive behavior, typography, colors, motion, keyboard behavior, screen-reader support, and validation evidence.
 
 ## Related guidance
 
