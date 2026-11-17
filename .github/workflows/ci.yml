@@ -18,7 +18,7 @@ jobs:
   linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install compiler and make
         run: sudo apt-get update && sudo apt-get install -y build-essential python3
       - name: Build, test and validate documentation
@@ -26,7 +26,7 @@ jobs:
   windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Compile and test with MinGW
         shell: pwsh
         run: |

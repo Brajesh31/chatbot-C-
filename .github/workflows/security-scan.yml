@@ -20,7 +20,7 @@ jobs:
   gcc-analyzer:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install GCC and Make
         run: sudo apt-get update && sudo apt-get install -y build-essential python3
       - name: Run repository secret-pattern check
