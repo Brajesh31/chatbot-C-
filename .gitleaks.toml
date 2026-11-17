@@ -1,0 +1,6 @@
+# Gitleaks configuration for Simple C Chatbot.
+# Extend rather than replace the maintained default detector set.
+title = "Simple C Chatbot secret scanning"
+
+[extend]
+useDefault = true

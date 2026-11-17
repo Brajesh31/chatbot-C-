@@ -15,7 +15,7 @@ The DISCUSSION_TEMPLATE directory contains questions, ideas, and announcement te
 | workflows/ci.yml | Linux quality gate and Windows source/unit-test build |
 | workflows/lint.yml | Markdown fence, link/asset and tree checks |
 | workflows/docs-validation.yml | Documentation link and SVG validation |
-| workflows/security-scan.yml | Secret-pattern scan, tests and GCC analyzer |
+| workflows/security-scan.yml | Gitleaks history scan, local heuristic, tests and GCC analyzer |
 | workflows/codeql.yml | CodeQL C/C++ analysis |
 | workflows/dependency-review.yml | Pull-request dependency review |
 | workflows/release.yml | Manual build from an existing tag |
@@ -25,6 +25,10 @@ Build and test jobs are consolidated into ci.yml rather than duplicated as indep
 ## Dependabot
 
 dependabot.yml checks GitHub Actions references monthly. The C application has no third-party package manifest or lockfile.
+
+## Action versions
+
+Configured actions use checkout v7, setup-python v7, upload-artifact v7, dependency-review v5, CodeQL v4 and Gitleaks action v3. Review upstream releases before updates. Major tags are not immutable commit pins.
 
 ## Permission policy
 

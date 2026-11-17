@@ -7,6 +7,7 @@
 <p align="center">
   <a href="https://github.com/Brajesh31/chatbot-C-/actions/workflows/ci.yml"><img src="https://github.com/Brajesh31/chatbot-C-/actions/workflows/ci.yml/badge.svg" alt="C build and test workflow"></a>
   <a href="https://github.com/Brajesh31/chatbot-C-/actions/workflows/codeql.yml"><img src="https://github.com/Brajesh31/chatbot-C-/actions/workflows/codeql.yml/badge.svg" alt="CodeQL analysis"></a>
+  <a href="https://github.com/Brajesh31/chatbot-C-/actions/workflows/security-scan.yml"><img src="https://github.com/Brajesh31/chatbot-C-/actions/workflows/security-scan.yml/badge.svg" alt="Security and secret scanning"></a>
   <a href="https://github.com/Brajesh31/chatbot-C-/actions/workflows/docs-validation.yml"><img src="https://github.com/Brajesh31/chatbot-C-/actions/workflows/docs-validation.yml/badge.svg" alt="Documentation validation"></a>
   <img src="https://img.shields.io/badge/Language-C11-00599C?logo=c" alt="C11 language">
   <img src="https://img.shields.io/badge/Build-Makefile-427819" alt="Makefile build">
@@ -62,6 +63,7 @@ A quick classroom example can hide input-read failures, overlong-line fragmentat
 - 🧰 Strict C11 Makefile build and test targets.
 - 🐧 Linux and 🪟 Windows source-build CI.
 - 🔎 CodeQL and GCC static analysis.
+- 🔐 Gitleaks history scanning alongside local repository hygiene checks.
 - 📚 Extensive technical documentation and architecture decision records.
 - 🧩 Reusable feature, architecture, QA, security, release, and maintenance templates.
 - 🖼️ Original SVG visual identity and technical diagrams.
@@ -211,13 +213,14 @@ No numeric coverage percentage, performance benchmark, or formal security certif
 
 ## 🗂️ Project structure
 
-The repository contains **253 tracked files** across source code, documentation, tests, automation and governance. The complete file-level tree is available below and in [docs/project-structure.md](docs/project-structure.md).
+The repository contains **277 tracked files** across source code, documentation, tests, automation and governance. The complete file-level tree is available below and in [docs/project-structure.md](docs/project-structure.md).
 
 <details>
-<summary>Expand complete tracked file and directory inventory (253 files)</summary>
+<summary>Expand complete tracked file and directory inventory (277 files)</summary>
 
 ~~~text
 chatbot-C-/
+.clang-format
 .editorconfig
 .env.example
 .gitattributes
@@ -246,6 +249,7 @@ chatbot-C-/
     release.yml
     security-scan.yml
 .gitignore
+.gitleaks.toml
 ACKNOWLEDGEMENTS.md
 AUTHORS.md
 CHANGELOG.md
@@ -276,6 +280,7 @@ docs/
   accessibility.md
   accessible-components.md
   accessible-forms.md
+  animation-guidelines.md
   api-authentication.md
   api-errors.md
   api-reference.md
@@ -296,14 +301,18 @@ docs/
     data-flow.svg
     deployment-flow.svg
     error-handling.svg
+    input-boundary.svg
     logo.svg
     project-banner.svg
     response-priority.svg
+    rule-precedence.svg
     screenshots/
       README.md
     security-architecture.svg
     security-boundaries.svg
     system-design.svg
+    terminal-session.svg
+    testing-matrix.svg
     testing-workflow.svg
     workflow-diagram.svg
   audit-logging.md
@@ -319,12 +328,15 @@ docs/
   code-standards.md
   coding-guidelines.md
   color-contrast.md
+  color-system.md
   commands-reference.md
   compatibility.md
   compliance.md
   component-architecture.md
+  component-library.md
   configuration.md
   consent-management.md
+  containerization.md
   contributor-guide.md
   cookie-policy.md
   data-deletion.md
@@ -348,10 +360,14 @@ docs/
   deployment.md
   deprecation-policy.md
   design-patterns.md
+  design-system.md
+  design-tokens.md
   developer-guide.md
   development-workflow.md
   development.md
+  diagrams.md
   disaster-recovery.md
+  docker.md
   e2e-testing.md
   encryption.md
   environment-setup.md
@@ -365,7 +381,10 @@ docs/
   getting-started.md
   github-actions.md
   glossary.md
+  health-checks.md
+  hosting.md
   incident-response.md
+  infrastructure.md
   installation.md
   integration-testing.md
   integrations.md
@@ -379,13 +398,18 @@ docs/
   maintenance.md
   migration-guide.md
   module-documentation.md
+  monitoring.md
+  navigation-structure.md
   non-functional-requirements.md
+  observability.md
   operations.md
+  page-documentation.md
   performance-testing.md
   performance.md
   privacy.md
   problem-statement.md
   product-overview.md
+  production-setup.md
   project-background.md
   project-objectives.md
   project-status.md
@@ -396,6 +420,7 @@ docs/
   release-management.md
   repository-file-applicability.md
   responsible-use.md
+  responsive-design.md
   risk-register.md
   roadmap.md
   rollback.md
@@ -453,6 +478,7 @@ docs/
   threat-assessment.md
   threat-model.md
   troubleshooting.md
+  typography.md
   ui-ux-guidelines.md
   unit-testing.md
   upgrade-guide.md
@@ -517,6 +543,13 @@ Start with the [documentation index](docs/README.md). Important guides:
 - [Templates index](docs/templates/README.md)
 - [Visual assets index](docs/assets/README.md)
 - [Master checklist applicability register](docs/repository-file-applicability.md)
+- [Diagram catalogue](docs/diagrams.md)
+- [CLI design system](docs/design-system.md), [tokens](docs/design-tokens.md), [component boundaries](docs/component-library.md)
+- [Responsive terminal](docs/responsive-design.md), [navigation](docs/navigation-structure.md), [terminal output surfaces](docs/page-documentation.md)
+- [Typography](docs/typography.md), [color](docs/color-system.md), [animation](docs/animation-guidelines.md)
+- [Production setup](docs/production-setup.md), [hosting](docs/hosting.md), [infrastructure](docs/infrastructure.md)
+- [Monitoring](docs/monitoring.md), [observability](docs/observability.md), [health checks](docs/health-checks.md)
+- [Containerization](docs/containerization.md), [Docker applicability](docs/docker.md)
 
 ## ❓ FAQ
 

@@ -7,16 +7,21 @@
 | ci.yml | Push, pull request, manual | Linux full quality gate and Windows C source/unit-test build |
 | lint.yml | Push, pull request, manual | Markdown fence, local link/SVG, and tracked-tree checks |
 | docs-validation.yml | Push, pull request, manual | Dedicated offline documentation and SVG validation |
-| security-scan.yml | Push, pull request, weekly, manual | Secret-pattern hygiene, tests, and GCC analyzer |
+| security-scan.yml | Push, pull request, weekly, manual | Gitleaks history scan, local secret-pattern hygiene, tests, and GCC analyzer |
 | codeql.yml | Push, pull request, weekly, manual | CodeQL C/C++ extraction and static analysis |
 | dependency-review.yml | Pull request | Review dependency graph changes where GitHub can resolve them |
 | release.yml | Manual with an existing tag | Build, test, and upload a Linux executable artifact |
 
 Build and tests are intentionally consolidated in ci.yml rather than duplicated into separate build.yml and test.yml workflows. The quality checks are separated into focused validation workflows so a failure is easier to identify.
 
+## Action versions
+
+Configured actions use checkout v7, setup-python v7, upload-artifact v7, dependency-review v5, CodeQL v4 and Gitleaks action v3. Review upstream release notes when updating; major tags are not immutable SHA pins.
+
 ## Security and permissions
 
 - Workflows declare minimal repository permissions.
+- Gitleaks scans repository history. PR comments and artifact upload are disabled.
 - Read-only contents access is used where practical.
 - Dependency review receives pull-request read permission only.
 - CodeQL receives security-events write access because it uploads analysis.

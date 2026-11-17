@@ -1,66 +1,82 @@
 # 📋 Master Checklist Applicability Register
 
-This register maps checklist items that are intentionally consolidated, omitted, or not applicable to the current Simple C Chatbot architecture. A missing filename is not automatically a gap when the underlying feature does not exist. The project standard explicitly requires project-specific documentation and prohibits invented systems.
+This register maps the master checklist to the actual Simple C Chatbot. A requested filename is added when it can contain useful project-specific guidance, including an applicability guide. Executable infrastructure is added only when the product needs it.
 
 ## Main repository files
-
-| Checklist item | Decision | Reason |
+| Item | Status | Decision |
 |---|---|---|
-| README.md, LICENSE, CODE_OF_CONDUCT.md, CONTRIBUTING.md, SECURITY.md, SUPPORT.md | Present | Root project and governance files. |
-| CHANGELOG.md, ROADMAP.md, CITATION.cff, AUTHORS.md, CODEOWNERS | Present | History, planning, citation and ownership. |
-| FUNDING.yml | Omitted | No verified funding page, sponsor destination, or funding program was supplied. Adding an empty funding file would be misleading. |
-| .gitignore, .editorconfig, .gitattributes, .env.example | Present | Native C, local tooling, line endings and no-runtime-environment-variable boundary. |
-| .nvmrc, JavaScript lockfiles, .prettierrc | Omitted | There is no Node.js or JavaScript build/runtime in this repository. |
-| .markdownlint configuration | Omitted | A project-specific offline Markdown fence validator is used instead; no external linter is installed. |
-| .gitleaks.toml | Omitted | The repository includes a small Python secret-pattern hygiene check. It is explicitly not a replacement for a dedicated scanner. |
+| README, LICENSE, CODE_OF_CONDUCT, CONTRIBUTING, SECURITY, SUPPORT | Present | Root project and governance files |
+| CHANGELOG, ROADMAP, CITATION.cff, AUTHORS, CODEOWNERS | Present | History, planning, citation and ownership |
+| FUNDING.yml | Omitted | No verified funding destination was provided |
+| .gitignore, .editorconfig, .gitattributes, .env.example | Present | Native C and local development |
+| .clang-format | Present | Optional C source formatting defaults |
+| .gitleaks.toml | Present | Extends Gitleaks default detectors |
+| .nvmrc, JS lockfiles, .prettierrc | Not applicable | No JavaScript or Node runtime |
+| Application lockfile | Not applicable | No third-party runtime package manager |
 
-## Documentation groups consolidated because features do not exist
-
-| Checklist examples | Current treatment | Reason |
-|---|---|---|
-| docs/api.md, api-reference.md, api-errors.md | Present | Describe the terminal interface and internal helper contract, not HTTP endpoints. |
-| docs/api-authentication.md, authentication.md, authorization.md, access-control.md | Present | Explicitly document the absence of app/API identity and access controls. |
-| docs/database.md, database-schema.md, data-dictionary.md | Present | Explain transient in-memory data and why an ER/schema diagram would be fabricated. |
-| docs/integrations.md, webhooks.md, third-party-services.md | Present | State that there are no runtime remote integrations. |
-| UI design system, tokens, component library, responsive design, page docs, navigation, typography, product color system, animations | Consolidated in ui-ux-guidelines.md and branding-guidelines.md | There is no graphical application interface or page/component hierarchy. Repository SVG colors are documentation asset styles, not app design tokens. |
-| Production setup, hosting, Docker, containerization, infrastructure, monitoring, observability, health checks | Consolidated in deployment-scope.md and operations.md | This is a local executable, not a hosted service or containerized production deployment. |
-| Cookie policy, consent management, data retention/deletion | Present as applicability guides | No cookies, analytics, remote collection, or persistent chat data exist. |
-| WCAG and graphical forms/components | Present as applicability and audit guides | The product is a terminal program. No WCAG 2.2 AA conformance is claimed. |
-
-## Diagram applicability
-
-| Diagram requested by master list | Decision |
+## Documentation coverage
+| Checklist group | Coverage |
 |---|---|
-| System architecture, application flow, user journey, data flow levels 0/1/2 | Present |
-| Error handling, deployment, testing, CI/CD, security boundaries | Present |
-| Sequence, state and component views | Present as Mermaid or SVG explanations |
-| Authentication/authorization flow | Not applicable; no accounts or permissions |
-| API request/backend lifecycle | Not applicable; no backend/API |
-| Frontend rendering/component hierarchy | Not applicable; no frontend |
-| Database ER/schema and backup/restore flow | Not applicable; no database or persistent application data |
-| Infrastructure deployment topology | Not applicable; no hosted infrastructure |
-| UML class diagram | Not applicable to the current procedural single-translation-unit implementation; no class-based language architecture exists |
+| Project/product and requirements | Product overview, background, objectives, problem/solution, features, functional/non-functional requirements, personas, journeys, use cases, scope, FAQ and glossary |
+| Architecture and engineering | Architecture, system design, component/module boundaries, lifecycle, dependencies, technology, configuration, data flow, error handling, logging, performance, scalability, compatibility and code standards |
+| Setup and development | Installation, getting started, local development, workflow, build/run, debugging, commands and developer/maintainer/contributor guides |
+| API and data | API guides describe terminal/function interfaces and explicitly state no HTTP API exists; database guides state there is no database/ER model |
+| UI/UX | Design system, tokens, component library, responsive behavior, navigation, terminal surfaces, typography, color and animation |
+| Security | Security guide/architecture, threat model/assessment, secrets, vulnerability management, incident response, dependency security, audit logging, risks and security tests |
+| Accessibility | CLI accessibility, keyboard interaction, screen-reader notes, contrast, testing and audit. No WCAG conformance claim |
+| Quality | Test strategy/plan, unit/integration/interactive tests, QA, quality gates, coverage limitations and bug reporting |
+| Deployment/DevOps | Deployment, production setup, hosting, infrastructure, CI/CD, GitHub Actions, release, rollback, monitoring, observability, health checks, containerization and Docker applicability |
+| Privacy/compliance | Privacy, data handling, retention/deletion, cookies, consent, compliance scope and legal considerations |
+| Maintenance | Maintenance, known issues, technical debt, risk, deprecation, migration, upgrade, decisions, status and roadmap |
 
-## GitHub workflow consolidation
+## Actual product boundary
+The application is a single-process C terminal program. It has no HTTP server, endpoint, remote API, authentication, roles, database, webhook, external model provider or runtime network integration. API/database/security/UX documents with those names are boundary records, not evidence that such capabilities exist. No fictional routes, payloads, credentials, tables, migrations or integration status are documented.
 
-| Suggested workflow name | Current treatment |
+## UX documents and actual equivalents
+| Requested document | Treatment |
 |---|---|
-| ci.yml | Present; combines platform build and test jobs. |
-| build.yml and test.yml | Not added separately because their commands are already represented in ci.yml. Duplicating them would create redundant status checks. |
-| lint.yml | Present; runs Markdown, local documentation and tree checks. |
-| quality.yml | Quality gates are consolidated in ci.yml, lint.yml and security-scan.yml rather than a fourth duplicate aggregate. |
-| security-scan.yml, codeql.yml, docs-validation.yml, dependency-review.yml, release.yml | Present. |
-| stale.yml | Not enabled; automatic closure of user issues is not needed and could close valid reports without maintainer review. |
-| .github/SECURITY.md | Not added separately because the root SECURITY.md is the single authoritative policy. |
-| Discussion templates | Present, but GitHub Discussions must be enabled in repository settings before they are offered. |
+| Design system | CLI prompts, response classes, warnings and session states |
+| Design tokens | No visual token engine; source constants and SVG styles are distinguished |
+| Component library | Private C helper boundaries, not widgets |
+| Responsive design | Terminal wrapping; byte limit is separate |
+| Navigation | Conversation flow, no routes or menus |
+| Page documentation | Startup, prompt, reply, warning, EOF and exit states |
+| Typography | Terminal-controlled font rendering |
+| Color system | Plain text, no ANSI color |
+| Animation | No runtime motion or screen redraw |
 
-## Visual asset applicability
+## Deployment and operations
+Production setup, hosting, infrastructure, monitoring, observability, health-check, containerization and Docker guides describe the current local-executable model and future adoption criteria. No production server, container image, cloud topology, monitoring agent or health endpoint is claimed.
 
-- Original logo, banner, system design, architecture, data-flow, workflow, testing, deployment, error-handling, security, state and response-priority SVGs are present.
-- The screenshots directory contains a README explaining that the app has no desktop/mobile GUI.
-- The terminal transcript graphic is labelled illustrative, not a screenshot of a live UI.
-- No fabricated dashboard, mobile, browser, or settings screenshot is included.
+The release workflow builds a Linux artifact from an existing tag. It does not publish a GitHub Release, sign binaries, create checksums, attest provenance or deploy a service.
 
-## Maintenance rule
+## Diagrams and visual assets
+System, application flow, user journey, DFD levels 0/1/2, sequence, state, activity, testing, CI, security, error-handling and distribution diagrams are documented. ER diagrams are not applicable because there are no tables or persisted application data. UML class diagrams are not applicable to procedural C. Authentication and frontend component diagrams are not applicable. The screenshot directory explains why no fake GUI screenshots are included.
 
-When the architecture changes, revisit this register. An item should move from not applicable to implemented only after source code, tests, documentation, security/privacy analysis, and a passing verification result exist.
+## Templates
+The templates directory contains ADR, architecture, API, database, feature, bug, QA, test, threat, security, accessibility, incident, release, deployment, rollback, migration, risk, change-request, code-review, status, meeting-notes and maintenance templates, plus benchmark, compatibility, proposal, review and feedback templates. API/database templates are reusable proposal tools only.
+
+## GitHub automation
+| Requirement | Treatment |
+|---|---|
+| Issue forms and config | Present |
+| PR template | Present |
+| Discussion templates | Present; Discussions setting remains disabled |
+| Dependabot | Monthly GitHub Actions updates |
+| Build/test | Consolidated in ci.yml |
+| Lint/docs/tree | Focused lint and docs workflows |
+| CodeQL and dependency review | Dedicated workflows |
+| Secret scanning | Gitleaks full-history scan plus local tracked-text heuristic |
+| Release | Manual artifact from existing tag |
+| Separate build/test/quality workflows | Consolidated to avoid duplicate checks |
+| stale.yml | Not enabled to avoid auto-closing valid reports |
+| .github/SECURITY.md | Not duplicated; root SECURITY.md is authoritative |
+
+## Intentionally omitted
+- `FUNDING.yml`: no verified destination.
+- Docker assets and container publishing: no approved use case.
+- Node/frontend configuration: no JavaScript UI.
+- Application API, database, authentication or network integration: absent from source.
+- Fake UI screenshots, demo links, cloud topology, performance results, security certification or coverage percentages: unsupported by evidence.
+
+Revisit this register whenever architecture changes. A filename alone does not make a feature implemented. Preserve useful existing files and never add empty placeholders.

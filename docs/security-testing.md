@@ -7,7 +7,8 @@ Security checks focus on the native C input boundary, repository hygiene, and bu
 | Strict compiler diagnostics | make test | Treat common warnings as errors | Not proof of correctness |
 | GCC static analyzer | security-scan.yml | Analyze selected C code paths | Only checks supported patterns |
 | CodeQL | codeql.yml | C/C++ static analysis | Findings depend on query and extraction |
-| Secret-pattern scan | security-check.sh | Scan tracked text files for selected high-confidence patterns | Heuristic, not a full secret scanner |
+| Local secret-pattern scan | security-check.sh | Scan tracked text files for selected patterns and conflict markers | Heuristic, not a full secret scanner |
+| Gitleaks | security-scan.yml and .gitleaks.toml | Scan Git history with default rules | Findings require rotation/remediation; a clean scan is not proof of no past exposure |
 | Long-line test | tests/test_interactive.sh | Exercise bounded input | POSIX shell suite |
 | EOF test | tests/test_interactive.sh | Exercise end-of-stream exit | Does not model all I/O failures |
 

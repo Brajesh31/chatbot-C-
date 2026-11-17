@@ -51,6 +51,15 @@ This directory documents the current local C terminal chatbot. It distinguishes 
 - [Project status](project-status.md), [troubleshooting](troubleshooting.md), [references](references.md), [responsible use](responsible-use.md)
 - [Data/privacy protection](data-protection.md), [consent applicability](consent-management.md), [cookie applicability](cookie-policy.md), [compliance scope](compliance.md), [legal considerations](legal-considerations.md)
 
+## Design, interface and operations
+- [Design system](design-system.md), [design tokens](design-tokens.md), [component library applicability](component-library.md)
+- [Responsive terminal](responsive-design.md), [navigation](navigation-structure.md), [terminal output surfaces](page-documentation.md)
+- [Typography](typography.md), [color](color-system.md), [animation and motion](animation-guidelines.md)
+- [Diagram catalogue](diagrams.md)
+- [Production setup](production-setup.md), [hosting](hosting.md), [infrastructure](infrastructure.md)
+- [Monitoring](monitoring.md), [observability](observability.md), [health checks](health-checks.md)
+- [Containerization](containerization.md), [Docker applicability](docker.md)
+
 ## Engineering resources
 - [Visual assets](assets/README.md), [screenshot policy](assets/screenshots/README.md), [architecture decisions](decisions/README.md)
 - [Reusable templates](templates/README.md), [validation scripts](../scripts/README.md), [tests](../tests/README.md)
