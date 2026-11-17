@@ -63,8 +63,9 @@ This directory documents the current local C terminal chatbot. It distinguishes 
 
 ## Engineering resources
 - [Visual assets](assets/README.md), [screenshot policy](assets/screenshots/README.md), [architecture decisions](decisions/README.md)
-- [Reusable templates](templates/README.md), [release notes template](templates/release-notes-template.md), [security exception template](templates/security-exception-template.md), [validation scripts](../scripts/README.md), [tests](../tests/README.md)
-- [GitHub configuration guide](../.github/README.md)
+- [Reusable templates](templates/README.md), including [reproduction records](templates/reproduction-record-template.md), [release notes](templates/release-notes-template.md), and [security exceptions](templates/security-exception-template.md)
+- [Validation scripts](../scripts/README.md), [tests](../tests/README.md)
+- [GitHub configuration guide](../.github/README.md), [security policy pointer](../.github/SECURITY.md), and canonical [root security policy](../SECURITY.md)
 
 ## Applicability
 
