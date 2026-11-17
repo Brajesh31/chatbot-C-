@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🔐 Report security concerns privately
+    url: https://github.com/Brajesh31/chatbot-C-/security/advisories/new
+    about: Do not publish sensitive vulnerability details in public issues.
+  - name: 📚 Documentation
+    url: https://github.com/Brajesh31/chatbot-C-/tree/main/docs
+    about: Read guides and troubleshooting first.

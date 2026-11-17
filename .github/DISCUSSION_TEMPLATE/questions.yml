@@ -1,0 +1,10 @@
+title: "💬 Question"
+body:
+  - type: textarea
+    attributes:
+      label: What are you trying to understand?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Compiler, platform, and what you tried

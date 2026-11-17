@@ -1,0 +1,10 @@
+title: "💡 Improvement idea"
+body:
+  - type: textarea
+    attributes:
+      label: Problem or learning opportunity
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Proposed behavior and example

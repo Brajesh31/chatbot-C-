@@ -1,0 +1,36 @@
+name: C build and test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install compiler and make
+        run: sudo apt-get update && sudo apt-get install -y build-essential
+      - name: Build and test
+        run: make test
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile and test with MinGW
+        shell: pwsh
+        run: |
+          gcc -std=c11 -Wall -Wextra -Wpedantic -Werror chatbot/chatbot.c -o chatbot-ci.exe
+          gcc -std=c11 -Wall -Wextra -Wpedantic -Werror tests/test_chatbot.c -o chatbot-tests.exe
+          .\chatbot-tests.exe
+      - name: EOF smoke test
+        shell: pwsh
+        run: |
+          $output = "" | .\chatbot-ci.exe
+          if ($output -notmatch "Input closed") { throw "EOF behavior failed" }
