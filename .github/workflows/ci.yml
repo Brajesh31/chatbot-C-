@@ -32,5 +32,6 @@ jobs:
       - name: EOF smoke test
         shell: pwsh
         run: |
-          $output = "" | .\chatbot-ci.exe
-          if ($output -notmatch "Input closed") { throw "EOF behavior failed" }
+          $output = & .\chatbot-ci.exe < $null
+          if ($LASTEXITCODE -ne 0) { throw "Application returned a non-zero exit code" }
+          if (($output -join "`n") -notmatch "Input closed") { throw "EOF behavior failed" }
