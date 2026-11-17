@@ -44,7 +44,7 @@ These controls reduce specific risks but do not prove that the program is secure
 - Byte-oriented lowercase conversion is not Unicode case folding.
 - Output-stream errors are not comprehensively handled.
 - The tracked chatbot/chatbot.exe is a historical artifact and is not provenance-attested by source CI.
-- The Windows CI job compiles and runs C unit tests but does not run the POSIX shell integration suite.
+- Windows CI runs C unit tests and the PowerShell process-level interactive suite. The POSIX shell integration script is Linux-specific.
 - Static analysis is not a formal audit or a memory-safety proof.
 
 ## 6. Contributor security expectations
