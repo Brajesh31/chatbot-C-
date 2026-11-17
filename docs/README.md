@@ -7,7 +7,7 @@ This directory documents the current local C terminal chatbot. It distinguishes 
 - [Problem statement](problem-statement.md), [solution overview](solution-overview.md), [feature catalogue](features.md)
 - [Functional requirements](functional-requirements.md), [non-functional requirements](non-functional-requirements.md)
 - [Personas](user-personas.md), [user journeys](user-journeys.md), [use cases](use-cases.md)
-- [Scope](feature-scope.md), [known issues](known-issues.md), [glossary](glossary.md), [FAQ](faq.md)
+- [Scope](feature-scope.md), [limitations](limitations.md), [known issues](known-issues.md), [glossary](glossary.md), [FAQ](faq.md)
 
 ## Architecture and source
 - [Architecture](architecture.md), [system design](system-design.md), [technical overview](technical-overview.md)
@@ -16,7 +16,8 @@ This directory documents the current local C terminal chatbot. It distinguishes 
 - [Function/API reference](api.md), [project structure](project-structure.md), [dependencies](dependencies.md), [technology stack](technology-stack.md)
 - [Configuration](configuration.md), [environment variables](environment-variables.md), [error handling](error-handling.md)
 - [Code standards](code-standards.md), [coding guidelines](coding-guidelines.md), [CLI UX](cli-ux-guidelines.md)
-- [Performance](performance.md), [scalability](scalability.md), [logging](logging.md)
+- [Performance](performance.md), [scalability](scalability.md), [logging](logging.md), [compatibility](compatibility.md)
+- [Database applicability](database.md)
 
 ## Setup and development
 - [Getting started](getting-started.md), [installation](installation.md), [local development](local-development.md)
@@ -28,7 +29,7 @@ This directory documents the current local C terminal chatbot. It distinguishes 
 - [Testing](testing.md), [test strategy](test-strategy.md), [test plan](test-plan.md), [QA](qa.md)
 - [Unit tests](unit-testing.md), [integration tests](integration-testing.md), [test coverage](test-coverage.md), [quality gates](quality-gates.md)
 - [Security](security.md), [threat model](threat-model.md), [security best practices](security-best-practices.md)
-- [Dependency security](dependency-security.md), [security testing](security-testing.md), [privacy](privacy.md)
+- [Dependency security](dependency-security.md), [security testing](security-testing.md), [privacy](privacy.md), [responsible use](responsible-use.md)
 - [Accessibility](accessibility.md), [accessibility guidelines](accessibility-guidelines.md), [keyboard interaction](keyboard-navigation.md)
 - [Screen-reader notes](screen-reader-support.md), [accessibility testing](accessibility-testing.md)
 
