@@ -1,21 +1,39 @@
-# ADR NNNN: <decision title>
+# 🧭 Architecture Decision Record
 
-- Status: Proposed / Accepted / Superseded
+> Use this template for a decision that affects project behavior, structure, dependencies, portability, security, or maintenance. Keep the record after the decision is superseded.
+
+## Metadata
+- ADR number:
+- Title:
+- Status: Proposed / Accepted / Rejected / Superseded
 - Date:
-- Author:
+- Decision owner:
+- Related issue/PR:
 
-## Context
-Describe the problem, constraints, and source behavior.
+## 1. Context
+Describe the problem, current behavior, constraints, stakeholders, and why a decision is needed now.
 
-## Options considered
-1. Option A and trade-offs.
-2. Option B and trade-offs.
+## 2. Decision drivers
+Rank the important factors, such as user value, C portability, memory safety, dependency cost, testability, accessibility, and maintenance burden.
 
-## Decision
-State the selected approach and non-goals.
+## 3. Options considered
+| Option | Benefits | Costs and risks | Rejected/selected |
+|---|---|---|---|
 
-## Consequences
-Describe portability, safety, maintainability, and test implications.
+Include at least one viable alternative.
 
-## Evidence
-Link compiler output, tests, and benchmarks.
+## 4. Decision
+State the selected approach precisely. Distinguish current implementation from future work.
+
+## 5. Consequences
+Document positive outcomes, trade-offs, migration effects, operational impacts, and known limitations.
+
+## 6. Security, privacy and accessibility
+Describe input trust, data handling, threat implications, and terminal user impact.
+
+## 7. Verification
+List tests, compiler/toolchain checks, documentation updates, and evidence links.
+
+## 8. Review and history
+| Date | Author/reviewer | Change | Reason |
+|---|---|---|---|

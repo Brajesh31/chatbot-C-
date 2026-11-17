@@ -13,6 +13,11 @@
   <img src="https://img.shields.io/badge/Language-C11-00599C?logo=c" alt="C11">
   <img src="https://img.shields.io/badge/Build-Makefile-427819" alt="Makefile">
   <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License">
+  <img src="https://img.shields.io/github/stars/Brajesh31/chatbot-C-?style=flat&logo=github" alt="GitHub stars">
+  <img src="https://img.shields.io/github/issues/Brajesh31/chatbot-C-" alt="Open GitHub issues">
+  <img src="https://img.shields.io/github/last-commit/Brajesh31/chatbot-C-" alt="Last commit">
+  <a href="https://github.com/Brajesh31/chatbot-C-/actions/workflows/codeql.yml"><img src="https://github.com/Brajesh31/chatbot-C-/actions/workflows/codeql.yml/badge.svg" alt="CodeQL workflow"></a>
+  <a href="https://github.com/Brajesh31/chatbot-C-/actions/workflows/docs-validation.yml"><img src="https://github.com/Brajesh31/chatbot-C-/actions/workflows/docs-validation.yml/badge.svg" alt="Documentation validation"></a>
 </p>
 
 > A small deterministic, rule-based command-line chatbot written in standard C. **This is not an AI or LLM application.** It runs locally, uses fixed phrase rules, makes no network requests, and does not save conversation history.
