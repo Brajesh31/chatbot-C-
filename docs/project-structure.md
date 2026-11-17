@@ -25,6 +25,7 @@ chatbot-C-/
     security_report.yml
   PULL_REQUEST_TEMPLATE.md
   README.md
+  SECURITY.md
   dependabot.yml
   workflows/
     ci.yml
@@ -36,6 +37,8 @@ chatbot-C-/
     security-scan.yml
 .gitignore
 .gitleaks.toml
+.markdownlint.jsonc
+.markdownlintignore
 ACKNOWLEDGEMENTS.md
 AUTHORS.md
 CHANGELOG.md
@@ -348,12 +351,14 @@ tests/
 | `README.md` | Project presentation, setup, examples, scope and docs index |
 | `LICENSE` | MIT license |
 | `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md` | Contributor workflow and community behavior |
-| `SECURITY.md`, `SUPPORT.md` | Private vulnerability route and support guidance |
+| `SECURITY.md`, `SUPPORT.md` | Canonical private vulnerability route and support guidance |
+| `.github/SECURITY.md` | GitHub-visible pointer to the canonical root security policy |
 | `.gitleaks.toml`, `.editorconfig`, `.gitattributes` | Repository hygiene, editor and line-ending defaults |
 | `.github/` | Issue forms, PR/discussion templates, Dependabot and seven workflows |
 | `CHANGELOG.md`, `ROADMAP.md` | Implemented changes and proposed future work |
 | `CITATION.cff`, `AUTHORS.md`, `CODEOWNERS` | Citation and ownership metadata |
 | `.clang-format` | Optional C formatting defaults |
+| `.markdownlint.jsonc`, `.markdownlintignore` | Optional Markdown CLI/editor conventions; not a separate CI dependency |
 | `.gitleaks.toml` | Gitleaks default detector extension |
 | `.env.example` | Confirms no runtime environment variables are required |
 
