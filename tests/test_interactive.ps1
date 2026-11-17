@@ -7,7 +7,7 @@ $ErrorActionPreference = "Stop"
 $script:Executable = (Resolve-Path -LiteralPath $AppPath).Path
 
 function Invoke-ChatbotInput {
-    param([Parameter(Mandatory = $true)][string]$InputText)
+    param([Parameter(Mandatory = $true)][AllowEmptyString()][string]$InputText)
 
     $startInfo = New-Object System.Diagnostics.ProcessStartInfo
     $startInfo.FileName = $script:Executable
