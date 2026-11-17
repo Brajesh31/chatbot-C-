@@ -22,7 +22,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install GCC and Make
-        run: sudo apt-get update && sudo apt-get install -y build-essential
+        run: sudo apt-get update && sudo apt-get install -y build-essential python3
+      - name: Run repository secret-pattern check
+        run: sh scripts/security-check.sh
       - name: Run project tests
         run: make test
       - name: Run GCC static analyzer

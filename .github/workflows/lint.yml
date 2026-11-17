@@ -1,0 +1,31 @@
+name: Repository lint and documentation checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: repository-lint-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate Markdown fences
+        run: python scripts/validate_markdown.py
+      - name: Validate local documentation links and SVG assets
+        run: python scripts/validate_docs.py
+      - name: Check tracked project structure
+        run: python scripts/check_project_structure.py

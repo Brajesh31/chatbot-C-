@@ -1,0 +1,27 @@
+title: "📣 Announcement: "
+labels: ["announcement"]
+body:
+  - type: markdown
+    attributes:
+      value: "For maintainer-posted project announcements. Do not use announcements for private security disclosures."
+  - type: input
+    id: summary
+    attributes:
+      label: Announcement summary
+      description: State what changed and who is affected.
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Include source tag/commit, relevant links, impact, and follow-up steps.
+    validations:
+      required: true
+  - type: textarea
+    id: status
+    attributes:
+      label: Verification evidence
+      description: Link to actual passing workflows or issue references. Do not claim checks that were not run.
+    validations:
+      required: false

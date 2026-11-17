@@ -1,0 +1,45 @@
+name: 🔐 Non-sensitive security hygiene report
+description: Report a security concern without publishing exploit details or secrets.
+title: "[Security hygiene]: "
+labels: ["security"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Do not use this public form for an exploitable vulnerability.**
+        Submit sensitive vulnerability details through the private Security Advisory route:
+        https://github.com/Brajesh31/chatbot-C-/security/advisories/new
+        This public form is only for non-sensitive security hygiene issues such as misleading documentation or a missing general safeguard.
+  - type: checkboxes
+    id: safe
+    attributes:
+      label: Disclosure confirmation
+      options:
+        - label: I confirm that this report contains no credentials, private data, exploit details, or sensitive proof-of-concept code.
+          required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Documentation or security guidance
+        - Build or CI workflow
+        - Dependency update
+        - Input handling (non-sensitive description only)
+        - Other non-sensitive concern
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Non-sensitive summary
+      description: Describe the concern at a high level without reproduction payloads or secrets.
+    validations:
+      required: true
+  - type: input
+    id: revision
+    attributes:
+      label: Affected commit or tag
+      placeholder: Commit SHA or tag
+    validations:
+      required: false
