@@ -1,13 +1,17 @@
 # 🔀 Data Flow
 
-## Context level (DFD 0)
+## Context-level diagram (DFD Level 0)
+
 ~~~mermaid
 flowchart LR
- User[Terminal user] -->|Text line| Chatbot((C chatbot process))
- Chatbot -->|Prompt and response text| User
+ User[Terminal user] -->|Input line| App((Simple C Chatbot))
+ App -->|Prompt and fixed response| User
 ~~~
 
-## Process level (DFD 1)
+![DFD Level 0](assets/data-flow-level0.svg)
+
+## Process-level diagram (DFD Level 1)
+
 ~~~mermaid
 flowchart TD
  U[stdin bytes] --> R[Read bounded line]
@@ -23,4 +27,35 @@ flowchart TD
  E -->|Yes| X
 ~~~
 
-No persistent data store or external data source exists. Data is held in a local buffer and discarded as the next input line overwrites it.
+![DFD Level 1](assets/data-flow.svg)
+
+## Detailed processing (DFD Level 2)
+
+~~~mermaid
+flowchart TD
+ A[stdin] --> B[fgets]
+ B --> C{Read success?}
+ C -->|No| X[EOF or input error, exit]
+ C -->|Yes| D{Line fits?}
+ D -->|No| E[Drain rest of logical line]
+ E --> F[Print length warning]
+ F --> A
+ D -->|Yes| G[Remove newline if present]
+ G --> H[Lowercase bytes]
+ H --> I{Contains hello?}
+ I -->|Yes| J[Greeting]
+ I -->|No| K{Contains how are you?}
+ K -->|Yes| L[Status]
+ K -->|No| M{Exact bye?}
+ M -->|Yes| N[Goodbye and exit]
+ M -->|No| O[Fallback]
+ J --> A
+ L --> A
+ O --> A
+~~~
+
+![DFD Level 2](assets/data-flow-level2.svg)
+
+## Data persistence
+
+No data store exists. The current line and classification are transient process state. No conversation history is retained by the application.
