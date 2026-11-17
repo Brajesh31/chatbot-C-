@@ -3,17 +3,10 @@
 This directory documents the current local C terminal chatbot. It distinguishes implemented behavior from reusable templates and future proposals.
 
 ## Product and requirements
-- [Product overview](product-overview.md)
-- [Project background](project-background.md)
-- [Objectives](project-objectives.md)
-- [Problem statement](problem-statement.md)
-- [Solution overview](solution-overview.md)
-- [Feature catalogue](features.md)
-- [Functional requirements](functional-requirements.md)
-- [Non-functional requirements](non-functional-requirements.md)
-- [User personas](user-personas.md)
-- [User journeys](user-journeys.md)
-- [Use cases](use-cases.md)
+- [Product overview](product-overview.md), [background](project-background.md), [objectives](project-objectives.md)
+- [Problem statement](problem-statement.md), [solution overview](solution-overview.md), [feature catalogue](features.md)
+- [Functional requirements](functional-requirements.md), [non-functional requirements](non-functional-requirements.md)
+- [Personas](user-personas.md), [user journeys](user-journeys.md), [use cases](use-cases.md)
 - [Scope](feature-scope.md), [known issues](known-issues.md), [glossary](glossary.md), [FAQ](faq.md)
 
 ## Architecture and source
@@ -22,15 +15,16 @@ This directory documents the current local C terminal chatbot. It distinguishes 
 - [Design choices](design-patterns.md), [data flow](data-flow.md), [console sequence](cli-sequence.md)
 - [Function/API reference](api.md), [project structure](project-structure.md), [dependencies](dependencies.md), [technology stack](technology-stack.md)
 - [Configuration](configuration.md), [environment variables](environment-variables.md), [error handling](error-handling.md)
-- [Code standards](code-standards.md), [coding guidelines](coding-guidelines.md), [performance](performance.md)
+- [Code standards](code-standards.md), [coding guidelines](coding-guidelines.md), [CLI UX](cli-ux-guidelines.md)
+- [Performance](performance.md), [scalability](scalability.md), [logging](logging.md)
 
-## Setup and contribution
-- [Installation](installation.md), [development](development.md), [getting started](getting-started.md)
-- [Local development](local-development.md), [development workflow](development-workflow.md), [build guide](building.md)
-- [Run locally](running-locally.md), [debugging](debugging.md), [command reference](commands-reference.md)
-- [Developer guide](developer-guide.md), [maintainer guide](maintainer-guide.md), [CLI UX](cli-ux-guidelines.md)
+## Setup and development
+- [Getting started](getting-started.md), [installation](installation.md), [local development](local-development.md)
+- [Development workflow](development-workflow.md), [building](building.md), [running locally](running-locally.md)
+- [Debugging](debugging.md), [command reference](commands-reference.md), [developer guide](developer-guide.md), [maintainer guide](maintainer-guide.md)
+- [Development overview](development.md)
 
-## Quality and security
+## Quality, security and accessibility
 - [Testing](testing.md), [test strategy](test-strategy.md), [test plan](test-plan.md), [QA](qa.md)
 - [Unit tests](unit-testing.md), [integration tests](integration-testing.md), [test coverage](test-coverage.md), [quality gates](quality-gates.md)
 - [Security](security.md), [threat model](threat-model.md), [security best practices](security-best-practices.md)

@@ -1,0 +1,32 @@
+name: ⚡ Performance issue
+description: Report a reproducible build-time or runtime performance problem.
+title: "[Performance]: "
+labels: ["performance"]
+body:
+  - type: input
+    id: environment
+    attributes:
+      label: Compiler and environment
+      placeholder: Compiler version, OS, CPU architecture
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps and input size
+      description: Include commands and representative input, without private data.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Measurements
+      description: Include repeatable timing, memory observations, and baseline.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected versus actual
+    validations:
+      required: true

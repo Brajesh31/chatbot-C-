@@ -1,0 +1,35 @@
+name: ♿ Accessibility report
+description: Report a terminal accessibility or assistive-technology issue.
+title: "[Accessibility]: "
+labels: ["accessibility"]
+body:
+  - type: markdown
+    attributes:
+      value: "This is a text-terminal application. Report terminal accessibility issues, not unrelated browser WCAG issues."
+  - type: input
+    id: environment
+    attributes:
+      label: Terminal and operating system
+      placeholder: Terminal emulator, OS, and version
+    validations:
+      required: true
+  - type: input
+    id: assistive
+    attributes:
+      label: Assistive technology
+      description: Name and version, or state not applicable.
+    validations:
+      required: false
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Include the exact sequence and observed output.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true

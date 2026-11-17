@@ -1,0 +1,29 @@
+name: C security and static analysis
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: c-security-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gcc-analyzer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install GCC and Make
+        run: sudo apt-get update && sudo apt-get install -y build-essential
+      - name: Run project tests
+        run: make test
+      - name: Run GCC static analyzer
+        run: gcc -std=c11 -Wall -Wextra -Wpedantic -Werror -fanalyzer chatbot/chatbot.c -o /tmp/chatbot-analyzed

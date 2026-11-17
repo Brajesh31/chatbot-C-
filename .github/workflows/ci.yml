@@ -10,15 +10,19 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: c-build-test-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   linux:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Install compiler and make
-        run: sudo apt-get update && sudo apt-get install -y build-essential
-      - name: Build and test
-        run: make test
+        run: sudo apt-get update && sudo apt-get install -y build-essential python3
+      - name: Build, test and validate documentation
+        run: make check
   windows:
     runs-on: windows-latest
     steps:

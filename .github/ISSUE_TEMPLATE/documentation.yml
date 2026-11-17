@@ -1,0 +1,30 @@
+name: 📚 Documentation improvement
+description: Report unclear, missing, or incorrect project documentation.
+title: "[Docs]: "
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: "Use this form for documentation about the existing C terminal chatbot. Do not include secrets or personal data."
+  - type: input
+    id: page
+    attributes:
+      label: Affected document
+      description: File path or section heading.
+      placeholder: docs/architecture.md
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is unclear or incorrect?
+      description: Include the current wording or missing information.
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Suggested improvement
+      description: Provide an example or proposed correction.
+    validations:
+      required: false
