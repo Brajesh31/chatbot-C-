@@ -1,5 +1,9 @@
 # 🐙 GitHub Repository Configuration
 
+## Security reporting
+
+The [`SECURITY.md`](SECURITY.md) file in this directory is a short GitHub-visible pointer. The canonical policy and private vulnerability-reporting instructions remain in the repository-root [`SECURITY.md`](../SECURITY.md). Sensitive reports must not be filed as public issues.
+
 ## Issue forms
 
 The issue templates cover bug reports, feature requests, documentation corrections, non-sensitive security hygiene concerns, terminal accessibility issues, and performance reports. Sensitive vulnerabilities must use the private GitHub Security Advisory route configured in ISSUE_TEMPLATE/config.yml.
@@ -25,6 +29,10 @@ Build and test jobs are consolidated into ci.yml rather than duplicated as indep
 ## Dependabot
 
 dependabot.yml checks GitHub Actions references monthly. The C application has no third-party package manifest or lockfile.
+
+## Markdown conventions
+
+The root `.markdownlint.jsonc` and `.markdownlintignore` files provide optional Markdown CLI/editor conventions. Repository CI remains intentionally offline and uses Python standard-library validators rather than downloading a Node.js linter.
 
 ## Action versions
 
