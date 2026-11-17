@@ -211,10 +211,10 @@ No numeric coverage percentage, performance benchmark, or formal security certif
 
 ## 🗂️ Project structure
 
-The repository contains **248 tracked files** across source code, documentation, tests, automation and governance. The complete file-level tree is available below and in [docs/project-structure.md](docs/project-structure.md).
+The repository contains **253 tracked files** across source code, documentation, tests, automation and governance. The complete file-level tree is available below and in [docs/project-structure.md](docs/project-structure.md).
 
 <details>
-<summary>Expand complete tracked file and directory inventory (248 files)</summary>
+<summary>Expand complete tracked file and directory inventory (253 files)</summary>
 
 ~~~text
 chatbot-C-/
@@ -394,6 +394,7 @@ docs/
   quality-gates.md
   references.md
   release-management.md
+  repository-file-applicability.md
   responsible-use.md
   risk-register.md
   roadmap.md
@@ -467,12 +468,16 @@ docs/
   workflow.md
 scripts/
   README.md
+  check-project-structure.py
   check_project_structure.py
+  generate-docs.sh
   release-check.sh
   security-check.sh
   security_check.py
   setup.ps1
   setup.sh
+  validate-docs.py
+  validate-links.py
   validate_docs.py
   validate_markdown.py
 tests/
@@ -511,6 +516,7 @@ Start with the [documentation index](docs/README.md). Important guides:
 - [CI/CD and releases](docs/ci-cd.md)
 - [Templates index](docs/templates/README.md)
 - [Visual assets index](docs/assets/README.md)
+- [Master checklist applicability register](docs/repository-file-applicability.md)
 
 ## ❓ FAQ
 

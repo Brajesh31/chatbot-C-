@@ -182,6 +182,7 @@ docs/
   quality-gates.md
   references.md
   release-management.md
+  repository-file-applicability.md
   responsible-use.md
   risk-register.md
   roadmap.md
@@ -255,12 +256,16 @@ docs/
   workflow.md
 scripts/
   README.md
+  check-project-structure.py
   check_project_structure.py
+  generate-docs.sh
   release-check.sh
   security-check.sh
   security_check.py
   setup.ps1
   setup.sh
+  validate-docs.py
+  validate-links.py
   validate_docs.py
   validate_markdown.py
 tests/
@@ -359,8 +364,8 @@ This inventory reflects a local terminal application. No frontend screenshots, r
 
 ## Inventory counts
 
-- Tracked files: 248
-- Main documentation pages excluding assets, templates and ADR subfolder: 140
+- Tracked files: 253
+- Main documentation pages excluding assets, templates and ADR subfolder: 141
 - Reusable templates: 30
 - Visual asset directory files: 20
 - GitHub workflows: 7
