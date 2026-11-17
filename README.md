@@ -89,6 +89,22 @@ A quick classroom example can hide input-read failures, overlong-line fragmentat
 ### Input and error-handling flow
 <img src="docs/assets/error-handling.svg" alt="Input reader distinguishes valid lines, EOF or errors, and overlong lines" width="100%">
 
+### Data-flow diagrams
+
+<img src="docs/assets/data-flow-level0.svg" alt="Level-zero data flow from terminal user into the local chatbot process and back to terminal output" width="100%">
+
+<img src="docs/assets/data-flow-level2.svg" alt="Level-two data flow showing line reading, byte normalization, rule classification, response selection and output" width="100%">
+
+### Runtime interaction and state views
+
+<img src="docs/assets/cli-sequence.svg" alt="Sequence diagram showing a message passing through the C chatbot helper functions" width="100%">
+
+<img src="docs/assets/application-state.svg" alt="Application state diagram showing input, classification, response, rejected overlong input and termination" width="100%">
+
+<img src="docs/assets/security-architecture.svg" alt="Security boundary diagram for the local process, terminal input and source-controlled code" width="100%">
+
+Editable Mermaid sources are maintained in [sequence diagrams](docs/sequence-diagrams.md), [state diagrams](docs/state-diagrams.md) and the [diagram catalogue](docs/diagrams.md). A UML class diagram is deliberately not used because this codebase is procedural C, not an object-oriented model.
+
 ### Runtime rule flow
 ~~~mermaid
 flowchart TD
@@ -213,10 +229,10 @@ No numeric coverage percentage, performance benchmark, or formal security certif
 
 ## 🗂️ Project structure
 
-The repository contains **289 tracked files** across source code, documentation, tests, automation and governance. The complete file-level tree is available below and in [docs/project-structure.md](docs/project-structure.md).
+The repository contains **292 tracked files** across source code, documentation, tests, automation and governance. The complete file-level tree is available below and in [docs/project-structure.md](docs/project-structure.md).
 
 <details>
-<summary>Expand complete tracked file and directory inventory (289 files)</summary>
+<summary>Expand complete tracked file and directory inventory (292 files)</summary>
 
 ~~~text
 chatbot-C-/
@@ -239,6 +255,7 @@ chatbot-C-/
     security_report.yml
   PULL_REQUEST_TEMPLATE.md
   README.md
+  SECURITY.md
   dependabot.yml
   workflows/
     ci.yml
@@ -250,6 +267,8 @@ chatbot-C-/
     security-scan.yml
 .gitignore
 .gitleaks.toml
+.markdownlint.jsonc
+.markdownlintignore
 ACKNOWLEDGEMENTS.md
 AUTHORS.md
 CHANGELOG.md
@@ -672,6 +691,21 @@ Start with the [documentation index](docs/README.md). Important guides:
 - [Runtime sequence diagrams](docs/sequence-diagrams.md), [state diagrams](docs/state-diagrams.md), [terminal accessibility](docs/terminal-accessibility.md)
 - [Compiler support](docs/compiler-support.md), [build matrix](docs/build-matrix.md), [testing matrix](docs/testing-matrix.md)
 - [Release process](docs/release-process.md), [repository audit guide](docs/repository-audit.md)
+
+### Repository resources and governance
+
+| Resource | Included material |
+|---|---|
+| Documentation | Product requirements, architecture, source boundaries, setup, testing, security, privacy, accessibility, compatibility, release, operations and maintenance guidance in [the documentation index](docs/README.md) |
+| Reusable templates | **32 templates** for ADRs, architecture, proposals, test plans/reports, bug reproduction, release notes, incidents, security reviews/exceptions, accessibility, risk and maintenance. Browse [all templates](docs/templates/README.md), including [reproduction records](docs/templates/reproduction-record-template.md), [release notes](docs/templates/release-notes-template.md), and [security exceptions](docs/templates/security-exception-template.md) |
+| Visual assets | **22 SVG files** for project identity, system/application architecture, DFDs, sequence/state, input limits, rule precedence, security, testing, CI and distribution. See [the asset index](docs/assets/README.md) |
+| GitHub governance | Issue forms, PR guidance, discussion templates, CODEOWNERS, Dependabot, a GitHub-visible [security policy pointer](.github/SECURITY.md), and seven Actions workflows |
+| Local quality tools | Offline Python validators for Markdown fences, local links/SVG, tracked-tree consistency and secret hygiene, plus C unit and process-level tests |
+| Architecture decisions | Two ADRs documenting the standard C console model and bounded line input in [the decision index](docs/decisions/README.md) |
+
+Start with [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), [SECURITY.md](SECURITY.md), [SUPPORT.md](SUPPORT.md), [CHANGELOG.md](CHANGELOG.md), [ROADMAP.md](ROADMAP.md), and [CITATION.cff](CITATION.cff).
+
+The optional [Markdown lint configuration](.markdownlint.jsonc) provides CLI/editor conventions. CI remains offline and uses the repository's Python standard-library validators, so it does not download a Node.js linter or add a JavaScript package toolchain to this C project.
 
 ## ❓ FAQ
 
