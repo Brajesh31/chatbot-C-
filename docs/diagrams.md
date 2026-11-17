@@ -69,6 +69,8 @@ flowchart TD
 ~~~
 
 ## Existing DFD and state diagrams
+- [Runtime sequence diagrams](sequence-diagrams.md) describe normal turns, exact-limit input and EOF/exit paths.
+- [Application and reader state diagrams](state-diagrams.md) document transient runtime states and accepted/rejected input transitions.
 - [Data flow](data-flow.md) has DFD levels 0, 1 and 2.
 - [Application lifecycle](application-lifecycle.md) covers startup, reading, normalization, classification, response and termination.
 - [User journeys](user-journeys.md) covers conversation, overlong input and contribution.

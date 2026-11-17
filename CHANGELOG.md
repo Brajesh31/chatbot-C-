@@ -5,6 +5,8 @@ All notable repository changes are recorded here. The project has not published 
 ## [Unreleased]
 
 ### Added
+- Windows PowerShell interactive tests for real process input/output, EOF and exact 254/255/256-byte boundaries.
+- Dedicated Mermaid sequence/state references, terminal accessibility guide, compiler/build matrix, testing matrix, release procedure and repeatable repository audit guide.
 - C11 Makefile targets for build, run, unit tests, interactive tests, documentation checks, and combined verification.
 - C unit tests for normalization, response classification, exact exit behavior, and fallback handling.
 - POSIX shell integration tests for conversation flow, EOF, and overlong-line behavior.
@@ -23,7 +25,8 @@ All notable repository changes are recorded here. The project has not published 
 
 ### Fixed
 - Input reading checks its return value and handles EOF without classifying uninitialized data.
-- Overlong input lines are drained and rejected as one logical message.
+- Exactly 255 bytes are accepted when followed by newline or EOF; 256-byte and longer lines are drained and rejected.
+- The overlong-input warning now describes the limit in bytes, not characters.
 - Exit behavior requires exact normalized bye rather than an incidental substring.
 - Lowercase conversion uses an unsigned-char value before calling tolower.
 - CodeQL workflow builds the C application before analysis so source extraction can take place.
@@ -39,4 +42,4 @@ All notable repository changes are recorded here. The project has not published 
 ### Known limitations
 - No numeric test coverage percentage or independent security audit is claimed.
 - The application is not an AI/LLM system and has no API, database, authentication, persistence, or graphical interface.
-- Windows CI does not currently run the POSIX shell integration suite.
+- Windows runs an equivalent PowerShell integration suite; macOS and Clang remain outside the current CI matrix.

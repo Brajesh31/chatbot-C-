@@ -213,10 +213,10 @@ No numeric coverage percentage, performance benchmark, or formal security certif
 
 ## 🗂️ Project structure
 
-The repository contains **277 tracked files** across source code, documentation, tests, automation and governance. The complete file-level tree is available below and in [docs/project-structure.md](docs/project-structure.md).
+The repository contains **286 tracked files** across source code, documentation, tests, automation and governance. The complete file-level tree is available below and in [docs/project-structure.md](docs/project-structure.md).
 
 <details>
-<summary>Expand complete tracked file and directory inventory (277 files)</summary>
+<summary>Expand complete tracked file and directory inventory (286 files)</summary>
 
 ~~~text
 chatbot-C-/
@@ -225,6 +225,7 @@ chatbot-C-/
 .env.example
 .gitattributes
 .github/
+  dependabot.yml
   DISCUSSION_TEMPLATE/
     announcements.yml
     ideas.yml
@@ -239,7 +240,6 @@ chatbot-C-/
     security_report.yml
   PULL_REQUEST_TEMPLATE.md
   README.md
-  dependabot.yml
   workflows/
     ci.yml
     codeql.yml
@@ -253,26 +253,17 @@ chatbot-C-/
 ACKNOWLEDGEMENTS.md
 AUTHORS.md
 CHANGELOG.md
-CITATION.cff
-CODEOWNERS
-CODE_OF_CONDUCT.md
-CONTRIBUTING.md
-DISCLAIMER.md
-GOVERNANCE.md
-LICENSE
-MAINTAINERS.md
-Makefile
-README.md
-ROADMAP.md
-SECURITY.md
-SUPPORT.md
 chatbot/
   .vscode/
     settings.json
   chatbot.c
   chatbot.exe
+CITATION.cff
+CODE_OF_CONDUCT.md
+CODEOWNERS
+CONTRIBUTING.md
+DISCLAIMER.md
 docs/
-  README.md
   access-control.md
   accessibility-audit.md
   accessibility-guidelines.md
@@ -290,7 +281,6 @@ docs/
   architecture-decisions.md
   architecture.md
   assets/
-    README.md
     application-state.svg
     architecture-overview.svg
     chatbot-flow.svg
@@ -304,6 +294,7 @@ docs/
     input-boundary.svg
     logo.svg
     project-banner.svg
+    README.md
     response-priority.svg
     rule-precedence.svg
     screenshots/
@@ -321,6 +312,7 @@ docs/
   backup-and-restore.md
   branding-guidelines.md
   bug-reporting.md
+  build-matrix.md
   building.md
   ci-cd.md
   cli-sequence.md
@@ -331,6 +323,7 @@ docs/
   color-system.md
   commands-reference.md
   compatibility.md
+  compiler-support.md
   compliance.md
   component-architecture.md
   component-library.md
@@ -416,8 +409,11 @@ docs/
   project-structure.md
   qa.md
   quality-gates.md
+  README.md
   references.md
   release-management.md
+  release-process.md
+  repository-audit.md
   repository-file-applicability.md
   responsible-use.md
   responsive-design.md
@@ -434,13 +430,14 @@ docs/
   security-risk-register.md
   security-testing.md
   security.md
+  sequence-diagrams.md
   solution-overview.md
+  state-diagrams.md
   system-design.md
   technical-debt.md
   technical-overview.md
   technology-stack.md
   templates/
-    README.md
     accessibility-audit-template.md
     adr-template.md
     api-documentation-template.md
@@ -460,6 +457,7 @@ docs/
     migration-template.md
     project-status-template.md
     qa-test-case-template.md
+    README.md
     release-checklist-template.md
     release-checklist.md
     risk-assessment-template.md
@@ -470,9 +468,11 @@ docs/
     test-report-template.md
     threat-assessment-template.md
     user-feedback-template.md
+  terminal-accessibility.md
   test-coverage.md
   test-plan.md
   test-strategy.md
+  testing-matrix.md
   testing.md
   third-party-services.md
   threat-assessment.md
@@ -492,23 +492,32 @@ docs/
   wcag-compliance.md
   webhooks.md
   workflow.md
+GOVERNANCE.md
+LICENSE
+MAINTAINERS.md
+Makefile
+README.md
+ROADMAP.md
 scripts/
-  README.md
-  check-project-structure.py
   check_project_structure.py
+  check-project-structure.py
   generate-docs.sh
+  README.md
   release-check.sh
-  security-check.sh
   security_check.py
+  security-check.sh
   setup.ps1
   setup.sh
-  validate-docs.py
-  validate-links.py
   validate_docs.py
   validate_markdown.py
+  validate-docs.py
+  validate-links.py
+SECURITY.md
+SUPPORT.md
 tests/
   README.md
   test_chatbot.c
+  test_interactive.ps1
   test_interactive.sh
 ~~~
 
@@ -550,6 +559,9 @@ Start with the [documentation index](docs/README.md). Important guides:
 - [Production setup](docs/production-setup.md), [hosting](docs/hosting.md), [infrastructure](docs/infrastructure.md)
 - [Monitoring](docs/monitoring.md), [observability](docs/observability.md), [health checks](docs/health-checks.md)
 - [Containerization](docs/containerization.md), [Docker applicability](docs/docker.md)
+- [Runtime sequence diagrams](docs/sequence-diagrams.md), [state diagrams](docs/state-diagrams.md), [terminal accessibility](docs/terminal-accessibility.md)
+- [Compiler support](docs/compiler-support.md), [build matrix](docs/build-matrix.md), [testing matrix](docs/testing-matrix.md)
+- [Release process](docs/release-process.md), [repository audit guide](docs/repository-audit.md)
 
 ## ❓ FAQ
 

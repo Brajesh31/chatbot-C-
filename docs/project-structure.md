@@ -11,6 +11,7 @@ chatbot-C-/
 .env.example
 .gitattributes
 .github/
+  dependabot.yml
   DISCUSSION_TEMPLATE/
     announcements.yml
     ideas.yml
@@ -25,7 +26,6 @@ chatbot-C-/
     security_report.yml
   PULL_REQUEST_TEMPLATE.md
   README.md
-  dependabot.yml
   workflows/
     ci.yml
     codeql.yml
@@ -39,26 +39,17 @@ chatbot-C-/
 ACKNOWLEDGEMENTS.md
 AUTHORS.md
 CHANGELOG.md
-CITATION.cff
-CODEOWNERS
-CODE_OF_CONDUCT.md
-CONTRIBUTING.md
-DISCLAIMER.md
-GOVERNANCE.md
-LICENSE
-MAINTAINERS.md
-Makefile
-README.md
-ROADMAP.md
-SECURITY.md
-SUPPORT.md
 chatbot/
   .vscode/
     settings.json
   chatbot.c
   chatbot.exe
+CITATION.cff
+CODE_OF_CONDUCT.md
+CODEOWNERS
+CONTRIBUTING.md
+DISCLAIMER.md
 docs/
-  README.md
   access-control.md
   accessibility-audit.md
   accessibility-guidelines.md
@@ -76,7 +67,6 @@ docs/
   architecture-decisions.md
   architecture.md
   assets/
-    README.md
     application-state.svg
     architecture-overview.svg
     chatbot-flow.svg
@@ -90,6 +80,7 @@ docs/
     input-boundary.svg
     logo.svg
     project-banner.svg
+    README.md
     response-priority.svg
     rule-precedence.svg
     screenshots/
@@ -107,6 +98,7 @@ docs/
   backup-and-restore.md
   branding-guidelines.md
   bug-reporting.md
+  build-matrix.md
   building.md
   ci-cd.md
   cli-sequence.md
@@ -117,6 +109,7 @@ docs/
   color-system.md
   commands-reference.md
   compatibility.md
+  compiler-support.md
   compliance.md
   component-architecture.md
   component-library.md
@@ -202,8 +195,11 @@ docs/
   project-structure.md
   qa.md
   quality-gates.md
+  README.md
   references.md
   release-management.md
+  release-process.md
+  repository-audit.md
   repository-file-applicability.md
   responsible-use.md
   responsive-design.md
@@ -220,13 +216,14 @@ docs/
   security-risk-register.md
   security-testing.md
   security.md
+  sequence-diagrams.md
   solution-overview.md
+  state-diagrams.md
   system-design.md
   technical-debt.md
   technical-overview.md
   technology-stack.md
   templates/
-    README.md
     accessibility-audit-template.md
     adr-template.md
     api-documentation-template.md
@@ -246,6 +243,7 @@ docs/
     migration-template.md
     project-status-template.md
     qa-test-case-template.md
+    README.md
     release-checklist-template.md
     release-checklist.md
     risk-assessment-template.md
@@ -256,9 +254,11 @@ docs/
     test-report-template.md
     threat-assessment-template.md
     user-feedback-template.md
+  terminal-accessibility.md
   test-coverage.md
   test-plan.md
   test-strategy.md
+  testing-matrix.md
   testing.md
   third-party-services.md
   threat-assessment.md
@@ -278,23 +278,32 @@ docs/
   wcag-compliance.md
   webhooks.md
   workflow.md
+GOVERNANCE.md
+LICENSE
+MAINTAINERS.md
+Makefile
+README.md
+ROADMAP.md
 scripts/
-  README.md
-  check-project-structure.py
   check_project_structure.py
+  check-project-structure.py
   generate-docs.sh
+  README.md
   release-check.sh
-  security-check.sh
   security_check.py
+  security-check.sh
   setup.ps1
   setup.sh
-  validate-docs.py
-  validate-links.py
   validate_docs.py
   validate_markdown.py
+  validate-docs.py
+  validate-links.py
+SECURITY.md
+SUPPORT.md
 tests/
   README.md
   test_chatbot.c
+  test_interactive.ps1
   test_interactive.sh
 ~~~
 
@@ -308,13 +317,14 @@ tests/
 | `docs/decisions/` | Accepted Architecture Decision Records |
 | `docs/templates/` | Reusable engineering, QA, security, release and governance templates |
 | `scripts/` | Setup, documentation, Markdown, tree, security-hygiene and release scripts |
-| `tests/` | C unit assertions and POSIX interactive smoke tests |
+| `tests/` | C unit assertions and POSIX shell and Windows PowerShell interactive tests |
 
 ## Runtime entry points
 - `chatbot/chatbot.c` is the only application source file and contains `main` plus input, normalization, classification and response helpers.
 - `Makefile` builds `build/chatbot`, unit tests and the local quality gate.
 - `tests/test_chatbot.c` verifies classifier and normalization behavior.
-- `tests/test_interactive.sh` checks stdin/stdout, long lines and EOF on POSIX.
+- `tests/test_interactive.sh` checks stdin/stdout, exact input limits and EOF on POSIX.
+- `tests/test_interactive.ps1` runs equivalent process-level boundary checks on Windows.
 - `chatbot/chatbot.exe` is a retained historical binary, not rebuilt or provenance-attested by source CI.
 
 ## Important root files
@@ -331,7 +341,7 @@ tests/
 | `.env.example` | Confirms no runtime environment variables are required |
 
 ## GitHub automation
-- `ci.yml`: Linux full checks and Windows source build/unit tests.
+- `ci.yml`: Linux full checks and Windows MinGW source build, unit tests and PowerShell integration tests.
 - `lint.yml`: Markdown, local documentation and project-tree checks.
 - `docs-validation.yml`: documentation links and SVG validation.
 - `security-scan.yml`: Gitleaks history scan, local heuristic, tests and GCC analyzer.

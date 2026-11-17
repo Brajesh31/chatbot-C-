@@ -23,9 +23,9 @@ This register maps the master checklist to the actual Simple C Chatbot. A reques
 | API and data | API guides describe terminal/function interfaces and explicitly state no HTTP API exists; database guides state there is no database/ER model |
 | UI/UX | Design system, tokens, component library, responsive behavior, navigation, terminal surfaces, typography, color and animation |
 | Security | Security guide/architecture, threat model/assessment, secrets, vulnerability management, incident response, dependency security, audit logging, risks and security tests |
-| Accessibility | CLI accessibility, keyboard interaction, screen-reader notes, contrast, testing and audit. No WCAG conformance claim |
-| Quality | Test strategy/plan, unit/integration/interactive tests, QA, quality gates, coverage limitations and bug reporting |
-| Deployment/DevOps | Deployment, production setup, hosting, infrastructure, CI/CD, GitHub Actions, release, rollback, monitoring, observability, health checks, containerization and Docker applicability |
+| Accessibility | CLI accessibility, keyboard interaction, screen-reader notes, contrast, testing and audit, including a consolidated terminal accessibility guide. No WCAG conformance claim |
+| Quality | Test strategy/plan, unit tests, Linux shell and Windows PowerShell process-level tests, scenario-to-runner test matrix, QA, quality gates and coverage limitations |
+| Deployment/DevOps | Deployment, production setup, hosting, infrastructure, CI/CD, GitHub Actions, release procedure, rollback, monitoring, observability, health checks, containerization and Docker applicability |
 | Privacy/compliance | Privacy, data handling, retention/deletion, cookies, consent, compliance scope and legal considerations |
 | Maintenance | Maintenance, known issues, technical debt, risk, deprecation, migration, upgrade, decisions, status and roadmap |
 
@@ -51,7 +51,7 @@ Production setup, hosting, infrastructure, monitoring, observability, health-che
 The release workflow builds a Linux artifact from an existing tag. It does not publish a GitHub Release, sign binaries, create checksums, attest provenance or deploy a service.
 
 ## Diagrams and visual assets
-System, application flow, user journey, DFD levels 0/1/2, sequence, state, activity, testing, CI, security, error-handling and distribution diagrams are documented. ER diagrams are not applicable because there are no tables or persisted application data. UML class diagrams are not applicable to procedural C. Authentication and frontend component diagrams are not applicable. The screenshot directory explains why no fake GUI screenshots are included.
+System, application flow, user journey, DFD levels 0/1/2, dedicated runtime sequence and state diagrams, testing, CI, security, error-handling and distribution diagrams are documented. ER diagrams are not applicable because there are no tables or persisted application data. UML class diagrams are not applicable to procedural C. Authentication and frontend component diagrams are not applicable. The screenshot directory explains why no fake GUI screenshots are included.
 
 ## Templates
 The templates directory contains ADR, architecture, API, database, feature, bug, QA, test, threat, security, accessibility, incident, release, deployment, rollback, migration, risk, change-request, code-review, status, meeting-notes and maintenance templates, plus benchmark, compatibility, proposal, review and feedback templates. API/database templates are reusable proposal tools only.
@@ -63,7 +63,7 @@ The templates directory contains ADR, architecture, API, database, feature, bug,
 | PR template | Present |
 | Discussion templates | Present; Discussions setting remains disabled |
 | Dependabot | Monthly GitHub Actions updates |
-| Build/test | Consolidated in ci.yml |
+| Build/test | Consolidated in ci.yml, Linux `make check` plus Windows MinGW compile, C unit and PowerShell process tests |
 | Lint/docs/tree | Focused lint and docs workflows |
 | CodeQL and dependency review | Dedicated workflows |
 | Secret scanning | Gitleaks full-history scan plus local tracked-text heuristic |
@@ -71,6 +71,15 @@ The templates directory contains ADR, architecture, API, database, feature, bug,
 | Separate build/test/quality workflows | Consolidated to avoid duplicate checks |
 | stale.yml | Not enabled to avoid auto-closing valid reports |
 | .github/SECURITY.md | Not duplicated; root SECURITY.md is authoritative |
+
+## Additional project-specific guides
+
+- `sequence-diagrams.md` and `state-diagrams.md` provide editable Mermaid runtime diagrams.
+- `terminal-accessibility.md` consolidates the CLI accessibility behavior and limitations without claiming certification.
+- `compiler-support.md` and `build-matrix.md` separate CI-verified toolchains from untested ones.
+- `testing-matrix.md` maps behaviors to Linux, Windows and C unit tests.
+- `release-process.md` describes the manual tagged Linux artifact workflow and what it does not do.
+- `repository-audit.md` describes repeatable inspection and validation commands.
 
 ## Intentionally omitted
 - `FUNDING.yml`: no verified destination.

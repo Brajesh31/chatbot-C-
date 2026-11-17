@@ -22,6 +22,7 @@ This directory documents the current local C terminal chatbot. It distinguishes 
 - [Technology stack](technology-stack.md), [configuration](configuration.md), [environment variables](environment-variables.md), [error handling](error-handling.md)
 - [Code standards](code-standards.md), [coding guidelines](coding-guidelines.md), [CLI UX](cli-ux-guidelines.md), [UI/UX applicability](ui-ux-guidelines.md), [branding](branding-guidelines.md)
 - [Performance](performance.md), [performance testing](performance-testing.md), [scalability](scalability.md), [logging](logging.md), [compatibility](compatibility.md)
+- [Compiler support](compiler-support.md), [build matrix](build-matrix.md), [testing matrix](testing-matrix.md)
 
 ## Setup and development
 - [Getting started](getting-started.md), [installation](installation.md), [environment setup](environment-setup.md), [local development](local-development.md)
@@ -40,12 +41,12 @@ This directory documents the current local C terminal chatbot. It distinguishes 
 - [Audit logging](audit-logging.md), [security risk register](security-risk-register.md), [security testing](security-testing.md), [security best practices](security-best-practices.md)
 - [Privacy](privacy.md), [data privacy](data-privacy.md), [data retention](data-retention.md), [data deletion](data-deletion.md)
 - [Accessibility](accessibility.md), [accessibility guidelines](accessibility-guidelines.md), [WCAG applicability](wcag-compliance.md)
-- [Keyboard interaction](keyboard-navigation.md), [screen-reader notes](screen-reader-support.md), [color contrast](color-contrast.md)
+- [Keyboard interaction](keyboard-navigation.md), [screen-reader notes](screen-reader-support.md), [color contrast](color-contrast.md), [terminal accessibility guide](terminal-accessibility.md)
 - [Accessible forms applicability](accessible-forms.md), [accessible components applicability](accessible-components.md), [accessibility audit](accessibility-audit.md), [accessibility testing](accessibility-testing.md)
 
 ## Distribution, governance and maintenance
 - [Deployment/distribution](deployment.md), [deployment scope](deployment-scope.md), [CI/CD](ci-cd.md), [GitHub Actions](github-actions.md)
-- [Release management](release-management.md), [versioning](versioning.md), [rollback](rollback.md), [operations](operations.md)
+- [Release management](release-management.md), [release procedure](release-process.md), [versioning](versioning.md), [rollback](rollback.md), [operations](operations.md)
 - [Maintenance](maintenance.md), [technical debt](technical-debt.md), [risk register](risk-register.md), [security risk register](security-risk-register.md)
 - [Deprecation policy](deprecation-policy.md), [migration guide](migration-guide.md), [upgrade guide](upgrade-guide.md)
 - [Project status](project-status.md), [troubleshooting](troubleshooting.md), [references](references.md), [responsible use](responsible-use.md)
@@ -55,7 +56,7 @@ This directory documents the current local C terminal chatbot. It distinguishes 
 - [Design system](design-system.md), [design tokens](design-tokens.md), [component library applicability](component-library.md)
 - [Responsive terminal](responsive-design.md), [navigation](navigation-structure.md), [terminal output surfaces](page-documentation.md)
 - [Typography](typography.md), [color](color-system.md), [animation and motion](animation-guidelines.md)
-- [Diagram catalogue](diagrams.md)
+- [Diagram catalogue](diagrams.md), [runtime sequence diagrams](sequence-diagrams.md), [state diagrams](state-diagrams.md), [repository audit procedure](repository-audit.md)
 - [Production setup](production-setup.md), [hosting](hosting.md), [infrastructure](infrastructure.md)
 - [Monitoring](monitoring.md), [observability](observability.md), [health checks](health-checks.md)
 - [Containerization](containerization.md), [Docker applicability](docker.md)
