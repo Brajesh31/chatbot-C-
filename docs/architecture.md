@@ -1,32 +1,37 @@
-# Architecture
+# 🏗️ Architecture
 
-## Overview
+The program is a single-process C11 console application. It reads a bounded line, normalizes case, classifies input using ordered rules, prints a fixed response, then repeats until exact `bye` or EOF.
 
-The program is a single-process C command-line application. `main` prints an opening line, repeatedly reads input from standard input, calls `respond`, and stops when the input contains the substring `bye`. There are no modules beyond the C standard I/O and string libraries.
+![Chatbot flow](assets/chatbot-flow.svg)
 
-```text
-Terminal input
-  -> main() in chatbot/chatbot.c
-  -> fgets into a 100-byte buffer
-  -> remove the first newline, if present
-  -> respond(input) performs ordered substring checks
-  -> printf writes the response to standard output
+```mermaid
+flowchart TD
+ A[main] --> B[Prompt and flush]
+ B --> C[read_input_line]
+ C --> D{EOF?}
+ D -->|Yes| E[Clean exit]
+ D -->|No| F{Too long?}
+ F -->|Yes| G[Discard remainder and warn]
+ G --> B
+ F -->|No| H[normalize_input]
+ H --> I[classify_input]
+ I --> J[response_text]
+ J --> K[Print response]
+ K --> L{Exact bye?}
+ L -->|No| B
+ L -->|Yes| E
 ```
 
-## Source responsibilities
+## Function responsibilities
+| Function | Purpose |
+|---|---|
+| `read_input_line` | Bounded read, EOF detection, overlong-line draining |
+| `normalize_input` | Lowercase normalization with unsigned-char conversion |
+| `is_exit_command` | Exact `bye` matching |
+| `classify_input` | Ordered rule selection |
+| `response_text` | Enum-to-string mapping |
+| `main` | Terminal interaction and termination |
 
-- `chatbot/chatbot.c`: declares `respond` and `main`, handles the input loop, matches phrases, and prints responses.
-- `chatbot/chatbot.exe`: a prebuilt Windows executable committed alongside the C source.
-- `chatbot/.vscode/settings.json`: an editor setting; it does not affect program behavior.
+Rule priority: contains `hello`, else contains `how are you`, else exact `bye`, else fallback. Thus `hello and bye` greets and continues; only exact `bye` exits.
 
-## Response and exit behavior
-
-`respond` checks for lowercase `hello`, then `how are you`, then `bye`, and otherwise prints a fallback response. `strstr` performs case-sensitive substring matching. The main loop independently checks for `bye` anywhere in the line and exits after calling `respond`, whether or not the selected response was the goodbye text.
-
-## Input limits and error handling
-
-The local buffer is 100 bytes. A successful `fgets` stores at most 99 input bytes plus the terminating NUL. A longer line can be consumed as multiple loop iterations because the remaining bytes stay in standard input. The program does not check the return value of `fgets`; terminal EOF is therefore not handled safely.
-
-## Runtime and data
-
-The application runs entirely in the local terminal. It opens no sockets or files, reads no environment variables, and does not persist conversation history. It needs no database or API.
+The buffer is 256 bytes, allowing 255 input bytes plus NUL. Longer lines are drained and rejected as one message. EOF exits safely. The program uses the C standard library only and has no API, database, persistence, authentication, or remote model.

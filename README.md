@@ -1,77 +1,137 @@
-# Simple C Chatbot
+# 💬 Simple C Chatbot
 
-A small command-line chatbot written in C. It reads one line at a time, checks the input for a few lowercase phrases, and prints a fixed response. It is a learning example for `stdio.h`, strings, `fgets`, and a simple input loop; it does not use AI, a network service, or a database.
+<p align="center">
+<img src="https://img.shields.io/badge/Language-C11-00599C?logo=c" alt="C11"> <img src="https://img.shields.io/badge/Build-Makefile-427819" alt="Makefile"> <img src="https://img.shields.io/badge/Tests-C%20assertions-success" alt="Tests"> <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT">
+</p>
 
-## What it recognizes
+> A small deterministic, rule-based command-line chatbot written in standard C. **This is not an AI or LLM application.** It runs locally, uses fixed phrase rules, makes no network requests, and does not save conversation history.
 
-- `hello` → a greeting
-- `how are you` → a short status response
-- `bye` → a goodbye response and exit
-- Other text → a default “I don't understand” response
+## 📑 Contents
+- [Overview](#-overview)
+- [Features](#-features)
+- [Flow](#-flow)
+- [Rules](#-rules)
+- [Build](#-build)
+- [Run and test](#-run-and-test)
+- [Structure](#-structure)
+- [Limitations](#-limitations)
+- [Documentation](#-documentation)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-Matching uses case-sensitive substring checks. For example, `hello there` matches, while `HELLO` does not. The substring `bye` anywhere in the input ends the loop, even if it appears inside a longer word.
+## 🎯 Overview
+The program reads a line from standard input, normalizes its case, classifies it using a small set of ordered conditions, and prints a fixed response. It demonstrates arrays, functions, enums, strings, bounded input, standard I/O, and control flow in C.
 
-## Requirements
+## ✨ Features
+- 🗣️ Interactive terminal conversation.
+- 🔤 Case-insensitive ASCII phrase matching.
+- 👋 Greeting and status responses.
+- 🚪 Exact `bye` command exits.
+- 🧱 Bounded 255-byte input with overlong-line rejection.
+- 🧯 Graceful EOF handling.
+- 🧪 C unit tests and shell integration tests.
+- 🧰 Makefile and GCC/Clang-compatible build.
 
-- A C compiler such as GCC, MinGW-w64, or Clang
-- A terminal or command prompt
+## 🔄 Flow
+![Chatbot flow](docs/assets/chatbot-flow.svg)
 
-The repository includes a prebuilt Windows executable at `chatbot/chatbot.exe`. Building from source is the recommended way to produce a binary for your own system.
-
-## Build and run
-
-From the repository root, using GCC/MinGW on Windows:
-
-```powershell
-gcc chatbot/chatbot.c -o chatbot/chatbot-build.exe
-.\chatbot\chatbot-build.exe
+```mermaid
+flowchart TD
+ A[Start] --> B[Prompt and read line]
+ B --> C{EOF?}
+ C -->|Yes| D[Clean exit]
+ C -->|No| E{Overlong?}
+ E -->|Yes| F[Discard rest and warn]
+ F --> B
+ E -->|No| G[Normalize case]
+ G --> H[Classify rules]
+ H --> I[Print response]
+ I --> J{Exact bye?}
+ J -->|No| B
+ J -->|Yes| D
 ```
 
-On Linux or macOS with a C compiler available as `cc`:
+## 💬 Rules
+| Input | Result |
+|---|---|
+| `hello` or `HELLO there` | Greeting |
+| `how are you?` | Status |
+| `bye` | Goodbye and exit |
+| `goodbye` | Fallback, no exit |
+| `hello and bye` | Greeting, continues |
+| Anything else | Fallback |
 
+Greeting/status matching uses substrings. Exit matching requires the complete normalized input to equal `bye`.
+
+## 🧰 Requirements
+A C11 compiler such as GCC, Clang, or MinGW-w64. GNU Make is recommended but optional. No third-party runtime libraries or internet connection are required.
+
+## 🚀 Build
+Linux/macOS:
 ```sh
-cc chatbot/chatbot.c -o chatbot/chatbot-build
-./chatbot/chatbot-build
+git clone https://github.com/Brajesh31/chatbot-C-.git
+cd chatbot-C-
+make
+./build/chatbot
 ```
+Windows with MinGW-w64:
+```powershell
+gcc -std=c11 -Wall -Wextra -Wpedantic chatbot/chatbot.c -o chatbot-build.exe
+.\chatbot-build.exe
+```
+Direct build:
+```sh
+cc -std=c11 -Wall -Wextra -Wpedantic chatbot/chatbot.c -o chatbot-build
+./chatbot-build
+```
+The tracked `chatbot/chatbot.exe` is a historical Windows binary. Build from source for the target OS; generated files use separate names.
 
-The commands create a separate local executable so the checked-in Windows binary is not overwritten. Generated build outputs are ignored by Git.
+## 🧪 Run and test
+```sh
+make test
+```
+Tests cover rule selection, normalization, exact exit matching, unknown/empty input, EOF, and long input. CI builds and tests on Linux and Windows. See [testing guide](docs/testing.md).
 
-## Example session
-
+## 🗂️ Structure
 ```text
-Chatbot: Hi! I'm a simple chatbot. Type 'bye' to exit.
-You: hello
-Chatbot: Hello! How can I help you today?
-You: how are you?
-Chatbot: I'm just a program, but thanks for asking!
-You: bye
-Chatbot: Goodbye! Have a great day!
+chatbot-C-/
+├── .github/                 Issue forms, PR template, CI and CodeQL
+├── chatbot/chatbot.c        C implementation
+├── chatbot/chatbot.exe      Existing Windows binary
+├── docs/                    Technical guides, diagrams, decisions, templates
+├── tests/                   Unit and interactive tests
+├── Makefile                 Build/test/clean commands
+├── README.md
+├── GOVERNANCE.md
+├── DISCLAIMER.md
+└── project policies
 ```
+See [project structure](docs/project-structure.md).
 
-## Project layout
+## 🔐 Security and privacy
+The program runs locally, uses bounded input, does not read secrets, and does not persist messages. The checked-in executable is a binary artifact; compile reviewed source when provenance matters. This is not a formal security audit. See [SECURITY.md](SECURITY.md).
 
-```text
-chatbot/
-  chatbot.c                 C source and console input loop
-  chatbot.exe               Existing prebuilt Windows executable
-  .vscode/settings.json     Editor preference
-```
+## ⚠️ Limitations
+There is no natural-language understanding, model, memory, personalization, language detection, GUI, voice support, database, or remote service. Responses are fixed and may be irrelevant.
 
-The full source walk-through and limitations are in [docs/architecture.md](docs/architecture.md) and [docs/troubleshooting.md](docs/troubleshooting.md). See [docs/development.md](docs/development.md) for compiling and contributing.
+## 📚 Documentation
+- [Documentation index](docs/README.md)
+- [Installation](docs/installation.md)
+- [Architecture](docs/architecture.md)
+- [API](docs/api.md)
+- [Development](docs/development.md)
+- [Testing](docs/testing.md)
+- [Troubleshooting](docs/troubleshooting.md)
+- [Deployment](docs/deployment.md)
+- [Security notes](docs/security.md)
+- [Accessibility](docs/accessibility.md)
+- [Templates](docs/templates/README.md)
 
-## Known limitations
+## 🤝 Contributing
+See [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). Keep changes small, portable, tested, and accurately documented.
 
-- Phrase checks are case-sensitive and match substrings rather than complete words.
-- Input is stored in a 100-byte buffer, so a longer line is processed in multiple chunks.
-- The program does not check whether `fgets` reached end-of-file; terminal EOF can cause repeated output or undefined behavior.
-- There are no automated tests, configurable response rules, or persistent conversations.
+## 🗺️ Roadmap
+See [ROADMAP.md](ROADMAP.md). Proposed features are not current functionality.
 
-## Contributing and support
-
-Read [CONTRIBUTING.md](CONTRIBUTING.md) before proposing a change. Report ordinary problems through the repository's GitHub issues and use [SECURITY.md](SECURITY.md) for private security reports. The [ROADMAP.md](ROADMAP.md) lists possible improvements.
-
-## License
-
-This repository is licensed under the MIT License. Copyright belongs to Brajesh Kumar (`@brajesh31`); see [LICENSE](LICENSE) for the complete terms.
-
-Last updated: 2026-11-17 11:07 UTC
+## 📄 License
+MIT License. Copyright Brajesh Kumar (`@brajesh31`). See [LICENSE](LICENSE).

@@ -1,5 +1,3 @@
-# Database and Persistence
+# 🗄️ Database and Persistence
 
-The program uses no database, file storage, or persistent history. Input is read from standard input and responses are written to standard output. Once the process exits, it retains no conversation state.
-
-There are no database schemas, connection strings, migrations, or seed data. `.env.example` is explanatory only; no environment variable is read by the current source.
+The application has no database, local data file, or persistent conversation history. Input is read from stdin and responses are printed to stdout. There are no schemas, migrations, seeds, or database configuration values. Any future persistence feature requires a separate design for consent, retention, deletion, and file permissions.

@@ -1,33 +1,25 @@
-# FAQ
+# ❓ FAQ
 
-## Is this an AI chatbot?
+## Is this AI?
+No. It is a deterministic phrase-matching example in C.
 
-No. It is a small C program that searches for a few lowercase substrings and prints fixed responses.
+## Does it need internet or an API key?
+No. It uses local standard input/output and the C standard library.
 
-## Does it need internet access or an API key?
+## Does it remember messages?
+No. History is not stored.
 
-No. It runs locally and uses only standard C I/O and string functions.
+## Is matching case-sensitive?
+No. Input is normalized to lowercase.
 
-## Why does uppercase `HELLO` not work?
+## How do I exit?
+Enter exactly `bye`, case-insensitively. `goodbye` does not exit.
 
-The checks are case-sensitive and the input is not converted to lowercase.
+## What is the input limit?
+255 bytes. Longer lines are discarded and a warning appears.
 
-## Why can a long line create multiple prompts?
+## Does it handle EOF?
+Yes. It exits cleanly.
 
-Input is stored in a 100-byte buffer. `fgets` reads at most 99 bytes per iteration; the rest of a longer line remains in the input stream.
-
-## How do I quit?
-
-Enter text containing the lowercase substring `bye`. The current behavior also exits for longer words that contain those letters.
-
-## Is the committed executable portable?
-
-No. `chatbot.exe` is a Windows binary. Compile the C source on the operating system where you plan to run it.
-
-## Where is the conversation saved?
-
-It is not saved. The program does not write chat history to a file or database.
-
-## Does this repository include automated tests?
-
-No. Suggested manual cases are listed in [development.md](development.md).
+## How do I test?
+Run `make test` with a C compiler and GNU Make installed.
