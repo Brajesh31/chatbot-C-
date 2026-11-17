@@ -211,20 +211,277 @@ No numeric coverage percentage, performance benchmark, or formal security certif
 
 ## 🗂️ Project structure
 
-The repository tree is maintained in [docs/project-structure.md](docs/project-structure.md). The main source areas are:
+The repository contains **248 tracked files** across source code, documentation, tests, automation and governance. The complete file-level tree is available below and in [docs/project-structure.md](docs/project-structure.md).
+
+<details>
+<summary>Expand complete tracked file and directory inventory (248 files)</summary>
+
 ~~~text
 chatbot-C-/
-├── .github/          Issue forms, discussion templates and workflows
-├── chatbot/          C source and retained historical executable
-├── docs/             Product, technical, security, QA and project guides
-│   ├── assets/       Logo, banner and SVG diagrams
-│   ├── decisions/    Architecture decision records
-│   └── templates/    Reusable engineering templates
-├── scripts/          Documentation, structure and security validation
-├── tests/            Unit and interactive integration tests
-├── Makefile          Build and quality-gate targets
-└── project policies  License, governance, contribution and security
+.editorconfig
+.env.example
+.gitattributes
+.github/
+  dependabot.yml
+  DISCUSSION_TEMPLATE/
+    announcements.yml
+    ideas.yml
+    questions.yml
+  ISSUE_TEMPLATE/
+    accessibility_report.yml
+    bug_report.yml
+    config.yml
+    documentation.yml
+    feature_request.yml
+    performance_issue.yml
+    security_report.yml
+  PULL_REQUEST_TEMPLATE.md
+  README.md
+  workflows/
+    ci.yml
+    codeql.yml
+    dependency-review.yml
+    docs-validation.yml
+    lint.yml
+    release.yml
+    security-scan.yml
+.gitignore
+ACKNOWLEDGEMENTS.md
+AUTHORS.md
+CHANGELOG.md
+chatbot/
+  .vscode/
+    settings.json
+  chatbot.c
+  chatbot.exe
+CITATION.cff
+CODE_OF_CONDUCT.md
+CODEOWNERS
+CONTRIBUTING.md
+DISCLAIMER.md
+docs/
+  access-control.md
+  accessibility-audit.md
+  accessibility-guidelines.md
+  accessibility-testing.md
+  accessibility.md
+  accessible-components.md
+  accessible-forms.md
+  api-authentication.md
+  api-errors.md
+  api-reference.md
+  api-testing.md
+  api.md
+  application-lifecycle.md
+  architecture-decisions.md
+  architecture.md
+  assets/
+    application-state.svg
+    architecture-overview.svg
+    chatbot-flow.svg
+    ci-pipeline.svg
+    cli-sequence.svg
+    data-flow-level0.svg
+    data-flow-level2.svg
+    data-flow.svg
+    deployment-flow.svg
+    error-handling.svg
+    logo.svg
+    project-banner.svg
+    README.md
+    response-priority.svg
+    screenshots/
+      README.md
+    security-architecture.svg
+    security-boundaries.svg
+    system-design.svg
+    testing-workflow.svg
+    workflow-diagram.svg
+  audit-logging.md
+  authentication.md
+  authorization.md
+  backup-and-restore.md
+  branding-guidelines.md
+  bug-reporting.md
+  building.md
+  ci-cd.md
+  cli-sequence.md
+  cli-ux-guidelines.md
+  code-standards.md
+  coding-guidelines.md
+  color-contrast.md
+  commands-reference.md
+  compatibility.md
+  compliance.md
+  component-architecture.md
+  configuration.md
+  consent-management.md
+  contributor-guide.md
+  cookie-policy.md
+  data-deletion.md
+  data-dictionary.md
+  data-flow.md
+  data-privacy.md
+  data-protection.md
+  data-retention.md
+  data-validation.md
+  database-schema.md
+  database.md
+  debugging.md
+  decision-log.md
+  decisions/
+    0001-standard-c-console.md
+    0002-bounded-line-input.md
+    README.md
+  dependencies.md
+  dependency-security.md
+  deployment-scope.md
+  deployment.md
+  deprecation-policy.md
+  design-patterns.md
+  developer-guide.md
+  development-workflow.md
+  development.md
+  disaster-recovery.md
+  e2e-testing.md
+  encryption.md
+  environment-setup.md
+  environment-variables.md
+  error-handling.md
+  external-dependencies.md
+  faq.md
+  feature-scope.md
+  features.md
+  functional-requirements.md
+  getting-started.md
+  github-actions.md
+  glossary.md
+  incident-response.md
+  installation.md
+  integration-testing.md
+  integrations.md
+  keyboard-navigation.md
+  known-issues.md
+  legal-considerations.md
+  limitations.md
+  local-development.md
+  logging.md
+  maintainer-guide.md
+  maintenance.md
+  migration-guide.md
+  module-documentation.md
+  non-functional-requirements.md
+  operations.md
+  performance-testing.md
+  performance.md
+  privacy.md
+  problem-statement.md
+  product-overview.md
+  project-background.md
+  project-objectives.md
+  project-status.md
+  project-structure.md
+  qa.md
+  quality-gates.md
+  README.md
+  references.md
+  release-management.md
+  responsible-use.md
+  risk-register.md
+  roadmap.md
+  rollback.md
+  running-locally.md
+  scalability.md
+  scope-and-limitations.md
+  screen-reader-support.md
+  secret-management.md
+  security-architecture.md
+  security-best-practices.md
+  security-risk-register.md
+  security-testing.md
+  security.md
+  solution-overview.md
+  system-design.md
+  technical-debt.md
+  technical-overview.md
+  technology-stack.md
+  templates/
+    accessibility-audit-template.md
+    adr-template.md
+    api-documentation-template.md
+    architecture-template.md
+    benchmark-template.md
+    bug-report-template.md
+    change-request-template.md
+    code-review-template.md
+    compatibility-matrix-template.md
+    database-schema-template.md
+    deployment-checklist.md
+    feature-proposal-template.md
+    feature-specification-template.md
+    incident-report-template.md
+    maintenance-checklist.md
+    meeting-notes-template.md
+    migration-template.md
+    project-status-template.md
+    qa-test-case-template.md
+    README.md
+    release-checklist-template.md
+    release-checklist.md
+    risk-assessment-template.md
+    rollback-checklist.md
+    security-audit-template.md
+    security-review-template.md
+    test-plan-template.md
+    test-report-template.md
+    threat-assessment-template.md
+    user-feedback-template.md
+  test-coverage.md
+  test-plan.md
+  test-strategy.md
+  testing.md
+  third-party-services.md
+  threat-assessment.md
+  threat-model.md
+  troubleshooting.md
+  ui-ux-guidelines.md
+  unit-testing.md
+  upgrade-guide.md
+  usage.md
+  use-cases.md
+  user-journeys.md
+  user-personas.md
+  versioning.md
+  visual-regression-testing.md
+  vulnerability-management.md
+  wcag-compliance.md
+  webhooks.md
+  workflow.md
+GOVERNANCE.md
+LICENSE
+MAINTAINERS.md
+Makefile
+README.md
+ROADMAP.md
+scripts/
+  check_project_structure.py
+  README.md
+  release-check.sh
+  security_check.py
+  security-check.sh
+  setup.ps1
+  setup.sh
+  validate_docs.py
+  validate_markdown.py
+SECURITY.md
+SUPPORT.md
+tests/
+  README.md
+  test_chatbot.c
+  test_interactive.sh
 ~~~
+
+</details>
 
 ## 🔐 Security, privacy and accessibility
 
