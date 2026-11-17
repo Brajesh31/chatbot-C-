@@ -1,10 +1,11 @@
 CC ?= cc
 CFLAGS ?= -std=c11 -Wall -Wextra -Wpedantic -Werror -O2
+PYTHON ?= python3
 BUILD_DIR := build
 APP := $(BUILD_DIR)/chatbot
 TEST := $(BUILD_DIR)/test_chatbot
 
-.PHONY: all run test clean check
+.PHONY: all run test docs-check check clean
 
 all: $(APP)
 
@@ -24,7 +25,10 @@ test: $(TEST) $(APP)
 	./$(TEST)
 	sh tests/test_interactive.sh ./$(APP)
 
-check: test
+docs-check:
+	$(PYTHON) scripts/validate_docs.py
+
+check: test docs-check
 
 clean:
 	rm -rf $(BUILD_DIR)

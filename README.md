@@ -1,139 +1,200 @@
-# 💬 Simple C Chatbot
+<p align="center">
+  <img src="docs/assets/project-banner.svg" alt="Simple C Chatbot, a deterministic C command-line chatbot, built with standard C" width="100%">
+</p>
 
 <p align="center">
-<img src="https://img.shields.io/badge/Language-C11-00599C?logo=c" alt="C11"> <img src="https://img.shields.io/badge/Build-Makefile-427819" alt="Makefile"> <img src="https://img.shields.io/badge/Tests-C%20assertions-success" alt="Tests"> <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT">
+  <img src="docs/assets/logo.svg" alt="Simple C Chatbot logo" width="84">
+</p>
+
+<h1 align="center">💬 Simple C Chatbot</h1>
+
+<p align="center">
+  <a href="https://github.com/Brajesh31/chatbot-C-/actions/workflows/ci.yml"><img src="https://github.com/Brajesh31/chatbot-C-/actions/workflows/ci.yml/badge.svg" alt="C build and test workflow"></a>
+  <img src="https://img.shields.io/badge/Language-C11-00599C?logo=c" alt="C11">
+  <img src="https://img.shields.io/badge/Build-Makefile-427819" alt="Makefile">
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License">
 </p>
 
 > A small deterministic, rule-based command-line chatbot written in standard C. **This is not an AI or LLM application.** It runs locally, uses fixed phrase rules, makes no network requests, and does not save conversation history.
 
-## 📑 Contents
-- [Overview](#-overview)
-- [Features](#-features)
-- [Flow](#-flow)
-- [Rules](#-rules)
-- [Build](#-build)
-- [Run and test](#-run-and-test)
-- [Structure](#-structure)
-- [Limitations](#-limitations)
-- [Documentation](#-documentation)
-- [Contributing](#-contributing)
-- [License](#-license)
+## 📑 Table of Contents
+- [🎯 Overview](#-overview)
+- [❓ Problem and solution](#-problem-and-solution)
+- [✨ Features](#-features)
+- [🏗️ Architecture and workflows](#-architecture-and-workflows)
+- [🧰 Technology stack](#-technology-stack)
+- [🚀 Installation and usage](#-installation-and-usage)
+- [🧪 Testing and quality](#-testing-and-quality)
+- [🗂️ Project structure](#-project-structure)
+- [🔐 Security, privacy and accessibility](#-security-privacy-and-accessibility)
+- [⚠️ Scope and limitations](#-scope-and-limitations)
+- [📚 Documentation and templates](#-documentation-and-templates)
+- [🤝 Contributing](#-contributing)
+- [🗺️ Roadmap](#-roadmap)
+- [📄 License](#-license)
 
 ## 🎯 Overview
-The program reads a line from standard input, normalizes its case, classifies it using a small set of ordered conditions, and prints a fixed response. It demonstrates arrays, functions, enums, strings, bounded input, standard I/O, and control flow in C.
+Simple C Chatbot demonstrates a terminal conversation loop using C11. It reads one line, normalizes ASCII case, evaluates ordered phrase rules, and prints a fixed response. It is intended for learners exploring arrays, functions, enums, strings, standard I/O, and defensive input handling.
+
+## ❓ Problem and solution
+A small classroom example can still hide unsafe input handling and unclear exit behavior. This version separates reading, normalization, classification, and response mapping. It checks input-read results, rejects overlong lines as one logical message, and exits cleanly on EOF.
 
 ## ✨ Features
 - 🗣️ Interactive terminal conversation.
-- 🔤 Case-insensitive ASCII phrase matching.
+- 🔤 Case-insensitive byte-oriented phrase matching.
 - 👋 Greeting and status responses.
-- 🚪 Exact `bye` command exits.
-- 🧱 Bounded 255-byte input with overlong-line rejection.
+- 🚪 Exact “bye” command exits, while “goodbye” does not.
+- 🧱 Bounded 255-byte input and overlong-line draining.
 - 🧯 Graceful EOF handling.
-- 🧪 C unit tests and shell integration tests.
-- 🧰 Makefile and GCC/Clang-compatible build.
+- 🧪 Unit and shell integration tests.
+- 🧰 Makefile, GitHub Actions, CodeQL and GCC analyzer checks.
+- 📚 Project-specific guides, decision records, diagrams and reusable templates.
 
-## 🔄 Flow
-![Chatbot flow](docs/assets/chatbot-flow.svg)
+## 🏗️ Architecture and workflows
+<img src="docs/assets/architecture-overview.svg" alt="Architecture flow from terminal input through bounded reader, normalization, rule classifier, response mapper, and terminal output" width="100%">
 
-```mermaid
+### Application flow
+~~~mermaid
 flowchart TD
  A[Start] --> B[Prompt and read line]
- B --> C{EOF?}
+ B --> C{EOF or error?}
  C -->|Yes| D[Clean exit]
  C -->|No| E{Overlong?}
- E -->|Yes| F[Discard rest and warn]
+ E -->|Yes| F[Drain remainder and warn]
  F --> B
  E -->|No| G[Normalize case]
- G --> H[Classify rules]
- H --> I[Print response]
+ G --> H[Classify ordered rules]
+ H --> I[Print fixed response]
  I --> J{Exact bye?}
  J -->|No| B
  J -->|Yes| D
-```
+~~~
 
-## 💬 Rules
-| Input | Result |
+### Rule priority
+| Priority | Condition | Response |
+|---:|---|---|
+| 1 | Input contains “hello” after lowercasing | Greeting |
+| 2 | Input contains “how are you” | Status |
+| 3 | Entire input equals “bye” | Goodbye and exit |
+| 4 | No rule matches | Fallback |
+
+“hello and bye” matches the greeting rule and continues. Only exact “bye” exits.
+
+## 🧰 Technology stack
+| Area | Technology |
 |---|---|
-| `hello` or `HELLO there` | Greeting |
-| `how are you?` | Status |
-| `bye` | Goodbye and exit |
-| `goodbye` | Fallback, no exit |
-| `hello and bye` | Greeting, continues |
-| Anything else | Fallback |
+| Language | C11 |
+| Runtime | C standard library |
+| Build | Makefile and GCC/Clang/MinGW-compatible compiler |
+| Tests | C assertions and POSIX shell tests |
+| CI | GitHub Actions on Linux and Windows |
+| Static analysis | CodeQL and GCC analyzer |
+| Documentation visuals | Mermaid and accessible SVG |
 
-Greeting/status matching uses substrings. Exit matching requires the complete normalized input to equal `bye`.
+No third-party runtime libraries, API credentials, database, cloud services, or JavaScript package manager are required.
 
-## 🧰 Requirements
-A C11 compiler such as GCC, Clang, or MinGW-w64. GNU Make is recommended but optional. No third-party runtime libraries or internet connection are required.
+## 🚀 Installation and usage
+### Requirements
+A C11 compiler such as GCC, Clang, or MinGW-w64. GNU Make is recommended on Linux/macOS but optional.
 
-## 🚀 Build
-Linux/macOS:
-```sh
+### Linux/macOS
+~~~sh
 git clone https://github.com/Brajesh31/chatbot-C-.git
 cd chatbot-C-
 make
 ./build/chatbot
-```
-Windows with MinGW-w64:
-```powershell
+~~~
+
+### Windows with MinGW-w64
+~~~powershell
 gcc -std=c11 -Wall -Wextra -Wpedantic chatbot/chatbot.c -o chatbot-build.exe
 .\chatbot-build.exe
-```
-Direct build:
-```sh
+~~~
+
+### Direct compile
+~~~sh
 cc -std=c11 -Wall -Wextra -Wpedantic chatbot/chatbot.c -o chatbot-build
 ./chatbot-build
-```
-The tracked `chatbot/chatbot.exe` is a historical Windows binary. Build from source for the target OS; generated files use separate names.
+~~~
 
-## 🧪 Run and test
-```sh
+### Example session
+~~~text
+Chatbot: Hi! I'm a simple chatbot. Type 'bye' to exit.
+You: hello
+Chatbot: Hello! How can I help you today?
+You: how are you?
+Chatbot: I'm just a program, but thanks for asking!
+You: bye
+Chatbot: Goodbye! Have a great day!
+~~~
+
+The tracked chatbot/chatbot.exe is a historical Windows binary. Build from source for the target OS; generated files use separate names.
+
+## 🧪 Testing and quality
+~~~sh
 make test
-```
-Tests cover rule selection, normalization, exact exit matching, unknown/empty input, EOF, and long input. CI builds and tests on Linux and Windows. See [testing guide](docs/testing.md).
+python3 scripts/validate_docs.py
+~~~
 
-## 🗂️ Structure
-```text
+Tests cover response classification, case normalization, exact exit matching, empty/unknown input, EOF, and long-line handling. Linux CI runs the interactive shell suite; Windows CI compiles the application and C unit tests. CodeQL and GCC analyzer workflows provide additional static analysis.
+
+No numeric coverage percentage is claimed. See [test strategy](docs/test-strategy.md), [test plan](docs/test-plan.md), and [known limitations](docs/known-issues.md).
+
+## 🗂️ Project structure
+~~~text
 chatbot-C-/
-├── .github/                 Issue forms, PR template, CI and CodeQL
-├── chatbot/chatbot.c        C implementation
-├── chatbot/chatbot.exe      Existing Windows binary
-├── docs/                    Technical guides, diagrams, decisions, templates
+├── .github/                 Issue forms, PR template, CI and analysis workflows
+├── chatbot/
+│   ├── chatbot.c            C application
+│   └── chatbot.exe          Existing historical Windows binary
+├── docs/
+│   ├── assets/              Banner, logo, SVG diagrams
+│   ├── decisions/           Architecture decision records
+│   └── templates/           Reusable engineering templates
+├── scripts/                 Documentation validation
 ├── tests/                   Unit and interactive tests
-├── Makefile                 Build/test/clean commands
+├── Makefile                 Build, test, check and clean commands
 ├── README.md
+├── AUTHORS.md
+├── MAINTAINERS.md
+├── CONTRIBUTING.md
+├── CODE_OF_CONDUCT.md
+├── SECURITY.md
+├── SUPPORT.md
 ├── GOVERNANCE.md
-├── DISCLAIMER.md
-└── project policies
-```
-See [project structure](docs/project-structure.md).
+├── CHANGELOG.md
+├── ROADMAP.md
+└── LICENSE
+~~~
 
-## 🔐 Security and privacy
-The program runs locally, uses bounded input, does not read secrets, and does not persist messages. The checked-in executable is a binary artifact; compile reviewed source when provenance matters. This is not a formal security audit. See [SECURITY.md](SECURITY.md).
+See [the complete structure guide](docs/project-structure.md).
 
-## ⚠️ Limitations
-There is no natural-language understanding, model, memory, personalization, language detection, GUI, voice support, database, or remote service. Responses are fixed and may be irrelevant.
+## 🔐 Security, privacy and accessibility
+The program runs locally, uses bounded input, does not read secrets, and does not persist messages. Plain-text prompts avoid color-only meaning. This is not a formal security audit or accessibility certification. Build from reviewed source when binary provenance matters. Read [security policy](SECURITY.md), [threat model](docs/threat-model.md), [privacy notes](docs/privacy.md), and [accessibility guide](docs/accessibility-guidelines.md).
 
-## 📚 Documentation
+## ⚠️ Scope and limitations
+This project has no natural-language understanding, model, memory, personalization, language detection, GUI, voice support, database, HTTP API, or remote service. Responses are fixed and may be irrelevant. Matching is substring-based and input is limited to 255 bytes. See [scope](docs/feature-scope.md) and [known issues](docs/known-issues.md).
+
+## 📚 Documentation and templates
 - [Documentation index](docs/README.md)
+- [Product overview](docs/product-overview.md)
+- [System design](docs/system-design.md)
+- [Technical overview](docs/technical-overview.md)
+- [Data flow](docs/data-flow.md)
 - [Installation](docs/installation.md)
-- [Architecture](docs/architecture.md)
-- [API](docs/api.md)
-- [Development](docs/development.md)
-- [Testing](docs/testing.md)
+- [Development guide](docs/development.md)
+- [Testing and QA](docs/testing.md)
+- [CI/CD](docs/ci-cd.md)
+- [Release management](docs/release-management.md)
 - [Troubleshooting](docs/troubleshooting.md)
-- [Deployment](docs/deployment.md)
-- [Security notes](docs/security.md)
-- [Accessibility](docs/accessibility.md)
-- [Templates](docs/templates/README.md)
+- [Documentation templates](docs/templates/README.md)
+- [Architecture decisions](docs/decisions/README.md)
 
 ## 🤝 Contributing
-See [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). Keep changes small, portable, tested, and accurately documented.
+Read [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), and [developer guide](docs/coding-guidelines.md). Keep changes focused, tested, portable, and project-specific. Use the issue forms for bugs, features, documentation, accessibility, and performance reports.
 
 ## 🗺️ Roadmap
 See [ROADMAP.md](ROADMAP.md). Proposed features are not current functionality.
 
 ## 📄 License
-MIT License. Copyright Brajesh Kumar (`@brajesh31`). See [LICENSE](LICENSE).
-
-Last updated: 2026-11-17 11:12 UTC
+MIT License. Copyright Brajesh Kumar (@Brajesh31). See [LICENSE](LICENSE).
