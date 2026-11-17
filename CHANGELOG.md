@@ -5,6 +5,8 @@ All notable repository changes are recorded here. The project has not published 
 ## [Unreleased]
 
 ### Added
+- GitHub-visible security-policy pointer and optional Markdown CLI/editor configuration, while keeping CI offline and dependency-light.
+- Expanded README data-flow/sequence/state/security visuals and synchronized README and project-structure inventories with the tracked tree.
 - Windows PowerShell interactive tests for real process input/output, EOF and exact 254/255/256-byte boundaries.
 - Dedicated Mermaid sequence/state references, terminal accessibility guide, compiler/build matrix, testing matrix, release procedure and repeatable repository audit guide.
 - C11 Makefile targets for build, run, unit tests, interactive tests, documentation checks, and combined verification.
@@ -18,6 +20,7 @@ All notable repository changes are recorded here. The project has not published 
 - Structured GitHub issue forms and contribution guidance.
 
 ### Changed
+- Checklist applicability and GitHub configuration documentation now describe the security pointer and Markdown conventions.
 - Main README expanded with a byte-level input contract, function responsibilities, rule-precedence flowchart, runtime sequence diagram, platform test matrix, Make target reference, terminal visual illustration, and regenerated complete tracked-file inventory.
 - Architecture and technical guides now distinguish implemented behavior from non-applicable or proposed functionality.
 - Repository project-tree documentation expanded to include the complete tracked inventory, key file responsibilities, and runtime/test entry points.
