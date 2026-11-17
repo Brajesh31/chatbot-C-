@@ -43,10 +43,9 @@ This directory documents the current local C terminal chatbot. It distinguishes 
 - [Accessible forms applicability](accessible-forms.md), [accessible components applicability](accessible-components.md), [accessibility audit](accessibility-audit.md), [accessibility testing](accessibility-testing.md)
 
 ## Distribution, governance and maintenance
-- [Deployment/distribution](deployment.md), [CI/CD](ci-cd.md), [GitHub Actions](github-actions.md)
+- [Deployment/distribution](deployment.md), [deployment scope](deployment-scope.md), [CI/CD](ci-cd.md), [GitHub Actions](github-actions.md)
 - [Release management](release-management.md), [versioning](versioning.md), [rollback](rollback.md), [operations](operations.md)
 - [Maintenance](maintenance.md), [technical debt](technical-debt.md), [risk register](risk-register.md), [security risk register](security-risk-register.md)
-- [Disaster recovery applicability](disaster-recovery.md), [backup/restore applicability](backup-and-restore.md)
 - [Deprecation policy](deprecation-policy.md), [migration guide](migration-guide.md), [upgrade guide](upgrade-guide.md)
 - [Project status](project-status.md), [troubleshooting](troubleshooting.md), [references](references.md), [responsible use](responsible-use.md)
 - [Data/privacy protection](data-protection.md), [consent applicability](consent-management.md), [cookie applicability](cookie-policy.md), [compliance scope](compliance.md), [legal considerations](legal-considerations.md)
@@ -54,6 +53,7 @@ This directory documents the current local C terminal chatbot. It distinguishes 
 ## Engineering resources
 - [Visual assets](assets/README.md), [screenshot policy](assets/screenshots/README.md), [architecture decisions](decisions/README.md)
 - [Reusable templates](templates/README.md), [validation scripts](../scripts/README.md), [tests](../tests/README.md)
+- [GitHub configuration guide](../.github/README.md)
 
 ## Applicability
 

@@ -26,7 +26,7 @@ flowchart TD
 | ci.yml | Linux make check and Windows compile/unit tests |
 | lint.yml | Markdown, documentation paths, SVG and tree validation |
 | docs-validation.yml | Dedicated link and asset validation |
-| security-scan.yml | Repository hygiene, tests and GCC analyzer |
+| security-scan.yml | Secret-pattern scan, tests and GCC analyzer |
 | codeql.yml | CodeQL source extraction and analysis |
 | dependency-review.yml | Pull-request dependency graph review |
 | release.yml | Manual tagged source build and artifact upload |
