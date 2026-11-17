@@ -5,12 +5,14 @@ This register maps the master checklist to the actual Simple C Chatbot. A reques
 ## Main repository files
 | Item | Status | Decision |
 |---|---|---|
-| README, LICENSE, CODE_OF_CONDUCT, CONTRIBUTING, SECURITY, SUPPORT | Present | Root project and governance files |
+| README, LICENSE, CODE_OF_CONDUCT, CONTRIBUTING, SECURITY, SUPPORT | Present | Root project and governance files; GitHub also exposes a short security-policy pointer |
 | CHANGELOG, ROADMAP, CITATION.cff, AUTHORS, CODEOWNERS | Present | History, planning, citation and ownership |
 | FUNDING.yml | Omitted | No verified funding destination was provided |
 | .gitignore, .editorconfig, .gitattributes, .env.example | Present | Native C and local development |
 | .clang-format | Present | Optional C source formatting defaults |
 | .gitleaks.toml | Present | Extends Gitleaks default detectors |
+| .markdownlint.jsonc, .markdownlintignore | Present | Optional Markdown CLI/editor conventions; CI continues to use offline Python validators |
+| .github/SECURITY.md | Present | GitHub-visible pointer to the canonical root `SECURITY.md` policy |
 | .nvmrc, JS lockfiles, .prettierrc | Not applicable | No JavaScript or Node runtime |
 | Application lockfile | Not applicable | No third-party runtime package manager |
 
@@ -70,7 +72,7 @@ The templates directory contains 32 reusable templates, including ADR, architect
 | Release | Manual artifact from existing tag |
 | Separate build/test/quality workflows | Consolidated to avoid duplicate checks |
 | stale.yml | Not enabled to avoid auto-closing valid reports |
-| .github/SECURITY.md | Not duplicated; root SECURITY.md is authoritative |
+| .github/SECURITY.md | Present as a short pointer; root SECURITY.md remains authoritative |
 
 ## Documentation and validation standard
 
