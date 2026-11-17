@@ -1,22 +1,49 @@
-# Build output and compiled artifacts
+# Native build output
 /build/
 /chatbot/chatbot-build
 /chatbot/chatbot-build.exe
 /tests/test_chatbot
 *.o
 *.obj
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
 *.pdb
 *.ilk
+*.out
+*.exe
 *.dSYM/
+*.gcda
+*.gcno
+*.profraw
+*.profdata
 
-# Local environment
+# Local environment and credentials
 .env
 .env.*
 !.env.example
+*.pem
+*.key
+*.p12
+*.pfx
 
-# Editor and OS files
+# Editor and operating-system state
 .DS_Store
 Thumbs.db
+*.swp
+*.swo
+*.tmp
+*.bak
+.idea/
 .vscode/*
 !.vscode/settings.json
-.idea/
+
+# Test and tool output
+coverage/
+htmlcov/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+*.log

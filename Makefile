@@ -5,7 +5,7 @@ BUILD_DIR := build
 APP := $(BUILD_DIR)/chatbot
 TEST := $(BUILD_DIR)/test_chatbot
 
-.PHONY: all run test docs-check check clean
+.PHONY: all run test docs-check markdown-check structure-check security-check check clean
 
 all: $(APP)
 
@@ -28,7 +28,16 @@ test: $(TEST) $(APP)
 docs-check:
 	$(PYTHON) scripts/validate_docs.py
 
-check: test docs-check
+markdown-check:
+	$(PYTHON) scripts/validate_markdown.py
+
+structure-check:
+	$(PYTHON) scripts/check_project_structure.py
+
+security-check:
+	sh scripts/security-check.sh
+
+check: test docs-check markdown-check structure-check security-check
 
 clean:
 	rm -rf $(BUILD_DIR)
